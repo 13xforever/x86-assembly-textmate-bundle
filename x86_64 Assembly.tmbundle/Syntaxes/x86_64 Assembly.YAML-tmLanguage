@@ -57,7 +57,8 @@ repository:
   comments:
     patterns:
     - name: comment.line
-      match: ;.*$
+      begin: (;|(\#\s))
+      end: (\n|(\r\n))
     - name: comment.block
       begin: /\*
       end: \*/
