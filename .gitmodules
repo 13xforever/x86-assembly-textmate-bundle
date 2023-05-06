@@ -1,7 +1,3 @@
-[submodule "atom/language-x86_64-assembly"]
-	path = atom/language-x86_64-assembly
-	url = git@github.com:13xforever/language-x86_64-assembly.git
-	branch = master
 [submodule "vs code/language-x86_64-assembly"]
 	path = vs code/language-x86_64-assembly
 	url = git@github.com:13xforever/x86_64-assembly-vscode.git
