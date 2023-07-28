@@ -1611,7 +1611,7 @@
 				</dict>
 				<dict>
 					<key>begin</key>
-					<string>^\s*[%#]\s*((xi?)?define|defined|elif(def)?|else|if(macro|ctx|idni?|num|str)?|ifn?def|line|(end)?macro|pragma|undef|endif)\b</string>
+					<string>^\s*[%#]\s*(i?x?define|defined|elif(def)?|else|if(macro|ctx|idni?|num|str)?|ifn?def|line|(end|i)?macro|pragma|undef|endif)\b</string>
 					<key>captures</key>
 					<dict>
 						<key>1</key>
@@ -1636,7 +1636,7 @@
 				</dict>
 				<dict>
 					<key>begin</key>
-					<string>^\s*[#%]\s*(assign|strlen|substr|(end|exit)?rep|push|pop)\b</string>
+					<string>^\s*[#%]\s*(assign|strlen|substr|(end|exit)?rep|push|pop|rotate)\b</string>
 					<key>captures</key>
 					<dict>
 						<key>1</key>

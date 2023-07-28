@@ -544,7 +544,7 @@ contexts:
         - include: strings
         - include: line-ending
         - include: preprocessor-macro-indirection
-    - match: '^\s*((%)(?:assign|i?deftok|strcat|strlen|substr|pathsearch|push|pop|repl|line|clear))\b'
+    - match: '^\s*((%)(?:assign|i?deftok|strcat|strlen|substr|pathsearch|push|pop|rotate|repl|line|clear))\b'
       captures:
         1: meta.preprocessor.asm.x86_64 keyword.control.preprocessor.asm.x86_64
         2: punctuation.definition.keyword.preprocessor.asm.x86_64
