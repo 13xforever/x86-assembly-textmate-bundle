@@ -188,7 +188,7 @@ repository:
           '0': {name: punctuation.definition.string.end.c}
     
     - name: meta.preprocessor.c
-      begin: ^\s*[%#]\s*(i?x?define|defined|elif(def)?|else|if(macro|ctx|idni?|num|str)?|ifn?def|line|(end|i)?macro|pragma|undef|endif)\b
+      begin: ^\s*[%#]\s*(i?x?define|defined|elif(def)?|else|if(macro|ctx|idni?|num|str)?|ifn?def|line|(i|end)?macro|pragma|undef|endif)\b
       end: (?=(?://|/\*))|$
       captures:
         '1': {name: keyword.control.import.c}
