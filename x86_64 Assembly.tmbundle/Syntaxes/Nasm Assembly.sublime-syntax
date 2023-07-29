@@ -1012,17 +1012,21 @@ contexts:
     - include: mnemonics-aesni
     - include: mnemonics-avx
     - include: mnemonics-avx2
-    - include: mnemonics-avx512
     - include: mnemonics-tsx
+    - include: mnemonics-sha
+    - include: mnemonics-avx512
     - include: mnemonics-system
     - include: mnemonics-64bit
     - include: mnemonics-vmx
     - include: mnemonics-smx
+    - include: mnemonics-mpx
+    - include: mnemonics-sgx
     - include: mnemonics-cet
-    - include: mnemonics-intel-isa-sgx
-    - include: mnemonics-intel-isa-mpx
-    - include: mnemonics-intel-isa-sha
-    - include: mnemonics-intel-isa-opmask
+    - include: mnemonics-amx
+    - include: mnemonics-uirq
+    - include: mnemonics-esi
+    - include: mnemonics-intel-manual-listing
+    - include: mnemonics-intel-isa-xeon-phi
     - include: mnemonics-intel-isa-keylocker
     - include: mnemonics-supplemental-amd
     - include: mnemonics-supplemental-cyrix
@@ -1062,8 +1066,10 @@ contexts:
       scope: keyword.operator.word.mnemonic.general-purpose.flag-control
     - match: '(?i)\b(l[defgs]s)\b'
       scope: keyword.operator.word.mnemonic.general-purpose.segment-registers
-    - match: '(?i)\b(lea|nop|ud2|xlatb?|cpuid|movbe)\b'
+    - match: '(?i)\b(lea|nop|ud2?|xlatb?|cpuid|movbe)\b'
       scope: keyword.operator.word.mnemonic.general-purpose.misc
+    - match: '(?i)\b(cl(flush(opt)?|demote|wb)|pcommit)\b'
+      scope: keyword.operator.word.mnemonic.general-purpose.cache-control
     - match: '(?i)\b(rdrand|rdseed)\b'
       scope: keyword.operator.word.mnemonic.general-purpose.rng
     - match: '(?i)\b(andn|bextr|bls(i|r|msk)|bzhi|pdep|pext|[lt]zcnt|(mul|ror|sar|shl|shr)x)\b'
@@ -1142,7 +1148,7 @@ contexts:
       scope: keyword.operator.word.mnemonic.sse2.simd-integer.mov
     - match: '(?i)\b(p((add|sub|(s[lr]l|mulu|unpck[hl]q)d)q|shuf(d|[hl]w)))\b'
       scope: keyword.operator.word.mnemonic.sse2.simd-integer.other
-    - match: '(?i)\b(clflush|[lm]fence|pause|maskmovdqu|movnt(dq|i|pd))\b'
+    - match: '(?i)\b([lm]fence|pause|maskmovdqu|movnt(dq|i|pd))\b'
       scope: keyword.operator.word.mnemonic.sse2.cacheability-control
   mnemonics-sse3:
     - match: '(?i)\b(fisttp|lddqu|(addsub|h(add|sub))p[sd]|mov(sh|sl|d)dup|monitor|mwait)\b'
@@ -1229,40 +1235,95 @@ contexts:
       scope: keyword.operator.word.mnemonic.avx2.blend
     - match: '(?i)\b(vp?gather[dq][dq]|vgather([dq]|dq)p[ds])\b'
       scope: keyword.operator.word.mnemonic.avx2.gather
-  mnemonics-avx512:
-    - match: '(?i)\b(vblendm(pd|ps)|vpblendm[bdqw])\b'
-      scope: keyword.operator.word.mnemonic.avx512.blend
-    - match: '(?i)\b(vbroadcast[fi](32x[248]|64x[24])|v(extract|insert)[fi](32x[48]|64x[24])|vshuf[fi](32x4|64x2)|vpbroadcastm(b2q|w2d))\b'
-      scope: keyword.operator.word.mnemonic.avx512.bits-mov
-    - match: '(?i)\b(v(compress|expand)p[ds]|vp(compress|expand|conflict)[dq])\b'
-      scope: keyword.operator.word.mnemonic.avx512.compress
-    - match: '(?i)\b(vcvt(t?p[sd]2(udq|u?qq)|(udq|u?qq)2p[ds]|t?s[ds]2usi|usi2s[ds]))\b'
-      scope: keyword.operator.word.mnemonic.avx512.conversion
-    - match: '(?i)\b(v(fixupimm|fpclass|get(exp|mant)|range|(rcp|rsqrt)(14|28)|reduce|rndscale|scalef)([ps][ds]))\b'
-      scope: keyword.operator.word.mnemonic.avx512.math
-    - match: '(?i)\b(v(exp2p[ds]|(scatter|(gather|scatter)pf[01])[dq]p[ds]))\b'
-      scope: keyword.operator.word.mnemonic.avx512.math
-    - match: '(?i)\b(vmovdq(a(32|64)|u(8|16|32|64)))\b'
-      scope: keyword.operator.word.mnemonic.avx512.simd-integer
-    - match: '(?i)\b(vp(andn?|x?or)[dq])\b'
-      scope: keyword.operator.word.mnemonic.avx512.logical
-    - match: '(?i)\b(vpcmpu?[dqw])\b'
-      scope: keyword.operator.word.mnemonic.avx512.packed-comparison
-    - match: '(?i)\b(vp(absq|(lzcnt|ternlog)[dq]|madd52[lh]uq|(max|min)[su]q|mullq))\b'
-      scope: keyword.operator.word.mnemonic.avx512.packed-math
-    - match: '(?i)\b(vpmov(m2[bdqw]|[bdqw]2m|(u?s)?([qd][bw]|qd|wb)))\b'
-      scope: keyword.operator.word.mnemonic.avx512.packed-mov
-    - match: '(?i)\b(vp(ro[rl]v?[dq]|scatter[dq][dq]))\b'
-      scope: keyword.operator.word.mnemonic.avx512.packed-shift
-    - match: '(?i)\b(vptestn?m[bdqw])\b'
-      scope: keyword.operator.word.mnemonic.avx512.packed-test
-    - match: '(?i)\b(vperm([bdw]|[it]2([bdwq]|p[ds])))\b'
-      scope: keyword.operator.word.mnemonic.avx512.permutations
-    - match: '(?i)\b(valign[dq]|vdbpsadbw|vpmultishiftqb|vpsrav[dqw])\b'
-      scope: keyword.operator.word.mnemonic.avx512.other
   mnemonics-tsx:
-    - match: '(?i)\b(x(abort|acquire|release|begin|end|test))\b'
+    - match: '(?i)\b(x(abort|begin|end|test|(res|sus)ldtrk))\b'
       scope: keyword.operator.word.mnemonic.tsx
+  mnemonics-sha:
+    - match: '(?i)\b(sha(1rnds4|256rnds2|1nexte|(1|256)msg[12]))\b'
+      scope: keyword.operator.word.mnemonic.sha
+  mnemonics-avx512:
+    - include: mnemonics-avx512f
+    - include: mnemonics-avx512dq
+    - include: mnemonics-avx512bw
+    - include: mnemonics-avx512-opmask
+    - include: mnemonics-avx512er
+    - include: mnemonics-avx512pf
+    - include: mnemonics-avx512fp16
+  mnemonics-avx512f:
+    - match: '(?i)\bv(align[dq]|(blendm|compress)p[ds])\b'
+      scope: keyword.operator.word.mnemonic.avx512.f.align
+    - match: '(?i)\bv(cvtt?[ps][ds]2u(dq|si))\b'
+      scope: keyword.operator.word.mnemonic.avx512.f.cvtt
+    - match: '(?i)\bv(cvt((q|ud)q2p|usi2s)[ds])\b'
+      scope: keyword.operator.word.mnemonic.avx512.f.cvt
+    - match: '(?i)\bv(expandp[ds]|extract[fi](32|64)x4|fixupimm[ps][ds])\b'
+      scope: keyword.operator.word.mnemonic.avx512.f.expand
+    - match: '(?i)\bv(get(exp|mant)[ps][ds]|insertf(32|64)x4|movdq[au](32|64))\b'
+      scope: keyword.operator.word.mnemonic.avx512.f.getexp
+    - match: '(?i)\bvp(blendm[dq]|cmpu?[dq]|compress[dq])\b'
+      scope: keyword.operator.word.mnemonic.avx512.f.pblend
+    - match: '(?i)\bvp(erm[it]2(d|q|p[ds])|expand[dq]|(max|min)[su]q|movu?s(q[bdw]|d[bw]))\b'
+      scope: keyword.operator.word.mnemonic.avx512.f.permi
+    - match: '(?i)\bvp(rolv?|rorr?|scatter[dq]|testn?m|terlog)[dq]\b'
+      scope: keyword.operator.word.mnemonic.avx512.f.prol
+    - match: '(?i)\bvpsravq\b'
+      scope: keyword.operator.word.mnemonic.avx512.f.sravq
+    - match: '(?i)\bv(rcp14|(rnd)?scale|rsqrt14)[ps][ds]\b'
+      scope: keyword.operator.word.mnemonic.avx512.f.rcp
+    - match: '(?i)\bv(scatter[dq]{2}|shuf[fi](32|64)x[24])\b'
+      scope: keyword.operator.word.mnemonic.avx512.f.scatter
+  mnemonics-avx512dq:
+    - match: '(?i)\bvcvt(t?p[ds]2u?qq|uqq2p[ds])\b'
+      scope: keyword.operator.word.mnemonic.avx512.dq.cvt
+    - match: '(?i)\bv((extract|insert)[fi]64x2|(fpclass|range|reduce)[ps][ds])\b'
+      scope: keyword.operator.word.mnemonic.avx512.dq.extract
+    - match: '(?i)\bvp(mov(m2[dq]|b2d|q2m)|mullq)\b'
+      scope: keyword.operator.word.mnemonic.avx512.dq.pmov
+  mnemonics-avx512bw:
+    - match: '(?i)\bv(dbpsadbw|movdqu(8|16))\b'
+      scope: keyword.operator.word.mnemonic.avx512.bw.dbpsad
+    - match: '(?i)\bvp(blendm|cmpu?|movm2)[bw]\b'
+      scope: keyword.operator.word.mnemonic.avx512.bw.pblend
+    - match: '(?i)\bvperm(w|i2[bw])\b'
+      scope: keyword.operator.word.mnemonic.avx512.bw.perpmi2
+    - match: '(?i)\bvp(mov([bw]2m|u?swb))\b'
+      scope: keyword.operator.word.mnemonic.avx512.bw.pmov
+    - match: '(?i)\bvp(s(ll|ra|rl)vw|testn?m[bw])\b'
+      scope: keyword.operator.word.mnemonic.avx512.bw.psll
+    - match: '(?i)\bvp(broadcastm|(conflict|lzcnt)[dq])\b'
+      scope: keyword.operator.word.mnemonic.avx512.bw.broadcast
+  mnemonics-avx512-opmask:
+    - match: '(?i)\bk(add|andn?|mov|not|or(test)?|shift[lr]|test|xn?or)[bdqw]\b'
+      scope: keyword.operator.word.mnemonic.avx512.opmask
+    - match: '(?i)\bkunpck(bw|wd|dq)\b'
+      scope: keyword.operator.word.mnemonic.avx512.opmask.unpack
+  mnemonics-avx512er:
+    - match: '(?i)\bv(exp2|rcp28|rsqrt28)[ps][ds]\b'
+      scope: keyword.operator.word.mnemonic.avx512.er
+  mnemonics-avx512pf:
+    - match: '(?i)\bv(gather|scatter)pf[01][dq]p[ds]\b'
+      scope: keyword.operator.word.mnemonic.avx512.pf
+  mnemonics-avx512fp16:
+    - match: '(?i)\bv((add|cmp|div|fc?(madd|mul)c|fpclass|get(exp|mant)|mul|rcp|reduce|(rnd)?scale|r?sqrt|sub)[ps]h|u?comish)\b'
+      scope: keyword.operator.word.mnemonic.avx512.fp16.add
+    - match: '(?i)\bvcvt(u?([dq]q|w)|pd)2ph\b'
+      scope: keyword.operator.word.mnemonic.avx512.fp16.cvtx2ph
+    - match: '(?i)\bvcvtph2(u?([dq]q|w)|pd)\b'
+      scope: keyword.operator.word.mnemonic.avx512.fp16.cvtph2x
+    - match: '(?i)\bvcvt(ph2psx|ps2phx)\b'
+      scope: keyword.operator.word.mnemonic.avx512.fp16.cvtx
+    - match: '(?i)\bvcvt(s[dsi]|usi)2sh\b'
+      scope: keyword.operator.word.mnemonic.avx512.fp16.cvtx2sh
+    - match: '(?i)\bvcvtsh2(s[dsi]|usi)\b'
+      scope: keyword.operator.word.mnemonic.avx512.fp16.cvtsh2x
+    - match: '(?i)\bvcvtt(ph2(u?(dq|qq|w))|sh2u?si)\b'
+      scope: keyword.operator.word.mnemonic.avx512.fp16.cvttph2x
+    - match: '(?i)\bvfn?m((add|sub)(132|213|231))[ps]h\b'
+      scope: keyword.operator.word.mnemonic.avx512.fp16.fmadd
+    - match: '(?i)\bvfm(addsub|subadd)(132|213|231)ph\b'
+      scope: keyword.operator.word.mnemonic.avx512.fp16.fmaddsub
+    - match: '(?i)\bv((min|max)ph|mov(sh|w))\b'
+      scope: keyword.operator.word.mnemonic.avx512.fp16.max
   mnemonics-system:
     - match: '(?i)\b((cl|st)ac|[ls]([gli]dt|tr|msw)|clts|arpl|lar|lsl|ver[rw]|inv(d|lpg|pcid)|wbinvd)\b'
       scope: keyword.operator.word.mnemonic.system
@@ -1280,29 +1341,70 @@ contexts:
     - match: '(?i)\b(getsec)\b'
       scope: keyword.operator.word.mnemonic.smx.getsec
     - match: '(?i)\b(capabilities|enteraccs|exitac|senter|sexit|parameters|smctrl|wakeup)\b'
-      scope: support.constant
-  mnemonics-cet:
-    - match: '(?i)\b((inc|save|rstor)ssp|wru?ss|(set|clr)ssbsy|endbranch|endbr(32|64))\b'
-      scope: keyword.operator.word.mnemonic.cet
-
-  mnemonics-intel-isa-sgx:
-    - match: '(?i)\be(add|block|create|dbg(rd|wr)|extend|init|ld[bu]|pa|remove|track|wb)\b'
-      scope: keyword.operator.word.mnemonic.sgx1.supervisor
-    - match: '(?i)\be(enter|exit|getkey|report|resume)\b'
-      scope: keyword.operator.word.mnemonic.sgx1.user
-    - match: '(?i)\be(aug|mod(pr|t))\b'
-      scope: keyword.operator.word.mnemonic.sgx2.supervisor
-    - match: '(?i)\be(accept(copy)?|modpe)\b'
-      scope: keyword.operator.word.mnemonic.sgx2.user
-  mnemonics-intel-isa-mpx:
+      scope: support.constant.smx
+  mnemonics-mpx:
     - match: '(?i)\b(bnd(mk|c[lnu]|mov|ldx|stx))\b'
       scope: keyword.operator.word.mnemonic.mpx
-  mnemonics-intel-isa-sha:
-    - match: '(?i)\b(sha(1rnds4|256rnds2|1nexte|(1|256)msg[12]))\b'
-      scope: keyword.operator.word.mnemonic.sha
-  mnemonics-intel-isa-opmask:
-    - match: '(?i)\b(k(add|andn?|(xn?)?or|mov|not|(or)?test|shift[lr])[bdqw]|kunpck(bw|wd|dq))\b'
-      scope: keyword.operator.word.mnemonic.opmask
+  mnemonics-sgx:
+    - match: '(?i)\bencl[su]\b'
+      scope: keyword.operator.word.mnemonic.sgx
+    - match: '(?i)\be(add|block|create|dbg(rd|wr)|extend|init|ld[bu]|pa|remove|track|wb)\b'
+      scope: support.constant.sgx1.supervisor
+    - match: '(?i)\be(add|block|create|dbg(rd|wr)|extend|init|ld[bu]|pa|remove|track|wb)\b'
+      scope: support.constant.sgx1.supervisor
+    - match: '(?i)\be(enter|exit|getkey|report|resume)\b'
+      scope: support.constant.sgx1.user
+    - match: '(?i)\be(aug|mod(pr|t))\b'
+      scope: support.constant.sgx2.supervisor
+    - match: '(?i)\be(accept(copy)?|modpe)\b'
+      scope: support.constant.sgx2.user
+  mnemonics-cet:
+    - match: '(?i)\b((inc|save(prev)?|rstor|rd)ssp|wru?ss|(set|clr)ssbsy|endbr(32|64))\b'
+      scope: keyword.operator.word.mnemonic.cet
+    - match: '(?i)\bendbranch\b'
+      scope: keyword.operator.word.mnemonic.cet.misc
+  mnemonics-amx:
+    - match: '(?i)\b((ld|st)tilecfg|tdpb(f16ps|[su]{2}d)|tile(loadd(t1)?|release|stored|zero))\b'
+      scope: keyword.operator.word.mnemonic.amx
+  mnemonics-uirq:
+    - match: '(?i)\b((cl|st|test)ui|senduipi|uiret)\b'
+      scope: keyword.operator.word.mnemonic.uirq
+  mnemonics-esi:
+    - match: '(?i)\benqcmds?\b'
+      scope: keyword.operator.word.mnemonic.esi
+  mnemonics-intel-manual-listing:
+    - match: '(?i)\bgf2p8(affine(inv)?q|mul)b\b'
+      scope: keyword.operator.word.mnemonic.other.g
+    - match: '(?i)\bhreset\b'
+      scope: keyword.operator.word.mnemonic.other.h
+    - match: '(?i)\bincssp[dq]\b'
+      scope: keyword.operator.word.mnemonic.other.i
+    - match: '(?i)\bmovdir(i|64b)\b'
+      scope: keyword.operator.word.mnemonic.other.m
+    - match: '(?i)\bp((abs|(max|min)[su]?|mull|sra)q|config|twrite)\b'
+      scope: keyword.operator.word.mnemonic.other.p
+    - match: '(?i)\brd(pid|ssp[dq])\b'
+      scope: keyword.operator.word.mnemonic.other.r
+    - match: '(?i)\bserialize\b'
+      scope: keyword.operator.word.mnemonic.other.s
+    - match: '(?i)\btpause\b'
+      scope: keyword.operator.word.mnemonic.other.t
+    - match: '(?i)\bu(monitor|mwait)\b'
+      scope: keyword.operator.word.mnemonic.other.u
+    - match: '(?i)\bv(broadcastf((32|64)x[24]|32x8)|compressw|cvtne2?ps2bf16|dpbf16ps|(extract|insert)[fi]32x8|inserti(32|64)x4|p?maskmov|(max|min)sh|popcnt)\b'
+      scope: keyword.operator.word.mnemonic.other.v
+    - match: '(?i)\bvp((2intersect|rorv|ternlog)[dq]|broadcast|compressb|dp(bu|ws)sds?|expand[bw]|madd52[hl]uq|mov(d(2m|b|w)|q[bdw]|wb)|multishiftqb|shldv|shrdv?|shufbitqmb)\b'
+      scope: keyword.operator.word.mnemonic.other.vp
+    - match: '(?i)\bvperm(b|t2[bw])\b'
+      scope: keyword.operator.word.mnemonic.other.vperm
+    - match: '(?i)\bv(scalef([ps][dhs])|scatter[dq]p[sd])\b'
+      scope: keyword.operator.word.mnemonic.other.vscale
+    - match: '(?i)\b(wbnoinvd|wr(u?ss[dq]))\b'
+      scope: keyword.operator.word.mnemonic.other.w
+
+  mnemonics-intel-isa-xeon-phi:
+    - match: '(?i)\bv(4fn?(madd)[ps]s|p4dpwssds?)\b'
+      scope: keyword.operator.word.mnemonic.xeon-phi
   mnemonics-intel-isa-keylocker:
     - match: '(?i)\b(aes(enc|dec)(wide)?(128|256)kl|encodekey(128|256)|loadiwkey)\b'
       scope: keyword.operator.word.mnemonic.keylocker
@@ -1348,10 +1450,6 @@ contexts:
       scope: keyword.operator.word.mnemonic.undocumented
   mnemonics-future-intel:
     - include: mnemonics-future-intel-apx
-    - include: mnemonics-future-intel-other
-  mnemonics-future-intel-other:
-    - match: '(?i)\b(clflushopt|clwb|pcommit)\b'
-      scope: keyword.operator.word.mnemonic.other
   mnemonics-future-intel-apx:
     - match: '(?i)\b(c(cmp|test)(n?[bl]e?|[ft]|n?[osz]))\b'
       scope: keyword.operator.word.mnemonic.apx.ccmp_test
@@ -1359,11 +1457,7 @@ contexts:
       scope: keyword.operator.word.mnemonic.apx.cfcmov
     - match: '(?i)\b(cmpn?([bl]e?|[opsz])xadd)\b'
       scope: keyword.operator.word.mnemonic.apx.cmpxadd
-    - match: '(?i)\b((ld|st)tilecfg|tile((load|store)d|loaddt1))\b'
-      scope: keyword.operator.word.mnemonic.apx.tile
-    - match: '(?i)\b(wru?ss[dq])\b'
-      scope: keyword.operator.word.mnemonic.apx.wrss
-    - match: '(?i)\b(enqcmds?|jmpabs|movdir(64b|i)|(push|pop)2p?)\b'
+    - match: '(?i)\b(jmpabs|(push|pop)2p?)\b'
       scope: keyword.operator.word.mnemonic.apx.other
 
   mnemonics-pseudo-ops:

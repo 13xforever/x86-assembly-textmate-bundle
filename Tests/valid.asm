@@ -1,15 +1,9 @@
-;Intel® 64 and IA-32 Architectures Software Developer’s Manual. Vol 1 (2015-01)
+;Intel® 64 and IA-32 Architectures Software Developer’s Manual. Vol 1 (2023-06)
 ;5.1 GENERAL-PURPOSE INSTRUCTIONS
 ;5.1.1         Data Transfer Instructions
-mov|cmove|cmovz|cmovne|cmovnz|cmova|cmovnbe|cmovae|cmovnb|cmovb|cmovnae
-cmovbe|cmovna|cmovg|cmovnle|cmovge|cmovnl|cmovl|cmovnge|cmovle|cmovng
-cmovc|cmovnc|cmovo|cmovno|cmovs|cmovns|cmovp|cmovpe|cmovnp|cmovpo
-xchg|bswap|xadd|cmpxchg|cmpxchg8b
-push|pop|pusha|pushad|popa|popad
-cwd|cdq|cbw|cwde
-movsx|movzx
+mov|cmove|cmovz|cmovne|cmovnz|cmova|cmovnbe|cmovae|cmovnb|cmovb|cmovnae|cmovbe|cmovna|cmovg|cmovnle|cmovge|cmovnl|cmovl|cmovnge|cmovle|cmovng|cmovc|cmovnc|cmovo|cmovno|cmovs|cmovns|cmovp|cmovpe|cmovnp|cmovpo|xchg|bswap|xadd|cmpxchg|cmpxchg8b|push|pop|pusha|pushad|popa|popad|cwd|cdq|cbw|cwde|movsx|movzx
 ;5.1.2         Binary Arithmetic Instructions
-adcx|adox|add|adc|sub|sbb|imul|mul|idiv|div|inc|dec|neg|cmp|
+adcx|adox|add|adc|sub|sbb|imul|mul|idiv|div|inc|dec|neg|cmp
 ;5.1.3         Decimal Arithmetic Instructions
 daa|das|aaa|aas|aam|aad
 ;5.1.4 Logical Instructions
@@ -17,22 +11,11 @@ and|or|xor|not
 ;5.1.5         Shift and Rotate Instructions
 sar|shr|sal|shl|shrd|shld|ror|rol|rcr|rcl
 ;5.1.6         Bit and Byte Instructions
-bt|bts|btr|btc|bsf|bsr
-sete|setz|setne|setnz|seta|setnbe|setae|setnb|setnc|setb|setnae|setc
-setbe|setna|setg|setnle|setge|setnl|setl|setnge|setle|setng
-sets|setns|seto|setno|setpe|setp|setpo|setnp
-test|crc32|popcnt
+bt|bts|btr|btc|bsf|bsr|sete|setz|setne|setnz|seta|setnbe|setae|setnb|setnc|setb|setnae|setc|setbe|setna|setg|setnle|setge|setnl|setl|setnge|setle|setng|sets|setns|seto|setno|setpe|setp|setpo|setnp|test|crc32|popcnt
 ;5.1.7         Control Transfer Instructions
-jmp|je|jz|jne|jnz|ja|jnbe|jae|jnb|jb|jnae|jbe|jna|jg|jnle|jge|jnl|jl|jnge|jle|jng
-jc|jnc|jo|jno|js|jns|jpo|jnp|jpe|jp|jcxz|jecxz
-loop|loopz|loope|loopnz|loopne
-call|ret|iret|int|into|bound|enter|leave
+jmp|je|jz|jne|jnz|ja|jnbe|jae|jnb|jb|jnae|jbe|jna|jg|jnle|jge|jnl|jl|jnge|jle|jng|jc|jnc|jo|jno|js|jns|jpo|jnp|jpe|jp|jcxz|jecxz|loop|loopz|loope|loopnz|loopne|call|ret|iret|int|into|bound|enter|leave
 ;5.1.8 String Instructions
-movs|movsb|movs|movsw|movs|movsd
-cmps|cmpsb|cmps|cmpsw|cmps|cmpsd
-scas|scasb|scas|scasw|scas|scasd
-lods|lodsb|lods|lodsw|lods|lodsd
-stos|stosb|stos|stosw|stos|stosd
+movs|movsb|movs|movsw|movs|movsd|cmps|cmpsb|cmps|cmpsw|cmps|cmpsd|scas|scasb|scas|scasw|scas|scasd|lods|lodsb|lods|lodsw|lods|lodsd|stos|stosb|stos|stosw|stos|stosd
 rep|repe|repz|repne|repnz
 ;5.1.9 I/O Instructions
 in|out|ins|insb|ins|insw|ins|insd|outs|outsb|outs|outsw|outs|outsd
@@ -43,20 +26,19 @@ stc|clc|cmc|cld|std|lahf|sahf|pushf|pushfd|popf|popfd|sti|cli
 ;5.1.12      Segment Register Instructions
 lds|les|lfs|lgs|lss
 ;5.1.13 Miscellaneous Instructions
-lea|nop|ud2|xlat|xlatb|cpuid|movbe|prefetchw|prefetchwt1
-;5.1.14      Random Number Generator Instructions
+lea|nop|ud|xlat|xlatb|cpuid|movbe|prefetchw|prefetchwt1|clflush|clflushopt
+;5.1.14 User Mode Extended Sate Save/Restore Instructions
+xsave|xsavec|xsaveopt|xrstor|xgetbv
+;5.1.15      Random Number Generator Instructions
 rdrand|rdseed
-;5.1.15 BMI1, BMI2
+;5.1.16 BMI1, BMI2
 andn|bextr|blsi|blsmsk|blsr|bzhi|lzcnt|mulx|pdep|pext|rorx|sarx|shlx|shrx|tzcnt
 
 ;5.2         X87 FPU INSTRUCTIONS
 ;5.2.1         x87 FPU Data Transfer Instructions
-fld|fst|fstp|fild|fist|fistp|fbld|fbstp|fxch
-fcmove|fcmovne|fcmovb|fcmovbe|fcmovnb|fcmovnbe|fcmovu|fcmovnu
+fld|fst|fstp|fild|fist|fistp|fbld|fbstp|fxch|fcmove|fcmovne|fcmovb|fcmovbe|fcmovnb|fcmovnbe|fcmovu|fcmovnu
 ;5.2.2         x87 FPU Basic Arithmetic Instructions
-fadd|faddp|fiadd|fsub|fsubp|fisub|fsubr|fsubrp|fisubr
-fmul|fmulp|fimul|fdiv|fdivp|fidiv|fdivr|fdivrp|fidivr
-fprem|fprem1|fabs|fchs|frndint|fscale|fsqrt|fxtract
+fadd|faddp|fiadd|fsub|fsubp|fisub|fsubr|fsubrp|fisubr|fmul|fmulp|fimul|fdiv|fdivp|fidiv|fdivr|fdivrp|fidivr|fprem|fprem1|fabs|fchs|frndint|fscale|fsqrt|fxtract
 ;5.2.3         x87 FPU Comparison Instructions
 fcom|fcomp|fcompp|fucom|fucomp|fucompp|ficom|ficomp|fcomi|fucomi|fcomip|fucomip|ftst|fxam
 ;5.2.4         x87 FPU Transcendental Instructions
@@ -64,22 +46,18 @@ fsin|fcos|fsincos|fptan|fpatan|f2xm1|fyl2x|fyl2xp1
 ;5.2.5         x87 FPU Load Constants Instructions
 fld1|fldz|fldpi|fldl2e|fldln2|fldl2t|fldlg2
 ;5.2.6         x87 FPU Control Instructions
-fincstp|fdecstp|ffree|finit|fninit|fclex|fnclex|fstcw|fnstcw
-fldcw|fstenv|fnstenv|fldenv|fsave|fnsave|frstor|fstsw|fnstsw
-wait|fwait|fnop
+fincstp|fdecstp|ffree|finit|fninit|fclex|fnclex|fstcw|fnstcw|fldcw|fstenv|fnstenv|fldenv|fsave|fnsave|frstor|fstsw|fnstsw|wait|fwait|fnop
 
 ;5.3         X87 FPU AND SIMD STATE MANAGEMENT INSTRUCTIONS
 fxsave|fxrstor
 
-;5.4 MMX™ INSTRUCTIONS
+;5.4 MMX INSTRUCTIONS
 ;5.4.1         MMX Data Transfer Instructions
 movd|movq
 ;5.4.2 MMX Conversion Instructions
 packsswb|packssdw|packuswb|punpckhbw|punpckhwd|punpckhdq|punpcklbw|punpcklwd|punpckldq
 ;5.4.3         MMX Packed Arithmetic Instructions
-paddb|paddw|paddd|paddsb|paddsw|paddusb|paddusw
-psubb|psubw|psubd|psubsb|psubsw|psubusb|psubusw
-pmulhw|pmullw|pmaddwd
+paddb|paddw|paddd|paddsb|paddsw|paddusb|paddusw|psubb|psubw|psubd|psubsb|psubsw|psubusb|psubusw|pmulhw|pmullw|pmaddwd
 ;5.4.4         MMX Comparison Instructions
 pcmpeqb|pcmpeqw|pcmpeqd|pcmpgtb|pcmpgtw|pcmpgtd
 ;5.4.5         MMX Logical Instructions
@@ -94,9 +72,7 @@ emms
 ;5.5.1.1        SSE Data Transfer Instructions
 movaps|movups|movhps|movhlps|movlps|movlhps|movmskps|movss
 ;5.5.1.2        SSE Packed Arithmetic Instructions
-addps|addss|subps|subss|mulss|mulps|divps|divss
-rcpps|rcpss|sqrtps|sqrtss|rsqrtps|rsqrtss
-maxps|maxss|minps|minss
+addps|addss|subps|subss|mulps|mulss|divps|divss|rcpps|rcpss|sqrtps|sqrtss|rsqrtps|rsqrtss|maxps|maxss|minps|minss
 ;5.5.1.3        SSE Comparison Instructions
 cmpps|cmpss|comiss|ucomiss
 ;5.5.1.4        SSE Logical Instructions
@@ -373,121 +349,285 @@ vgatherdd|vgatherqd|vgatherdd|vgatherqd|vgatherdpd|vgatherqpd|vgatherdpd|vgather
 vgatherdps|vgatherqps|vgatherdps|vgatherqps|vgatherdq|vgatherqq|vgatherdq|vgatherqq
 
 ;5.17       INTEL® TRANSACTIONAL SYNCHRONIZATION EXTENSIONS (TSX)
-xabort|xacquire|xrelease|xbegin|xend|xtest
+xabort|xacquire|xrelease|xbegin|xend|xtest|xresldtrk|xsusldtrk
 
-;5.18 SYSTEM INSTRUCTIONS
-clac|stac|lgdt|sgdt|lldt|sldt|ltr|str|lidt|sidt|mov|lmsw|smsw
-clts|arpl|lar|lsl|verr|verw|mov|invd|wbinvd|invlpg|invpcid
+;5.18 INTEL® SHA EXTENSIONS
+sha1msg1|sha1msg2|sha1nexte|sha1rnds4|sha256msg1|sha256msg2|sha256rnds2
+
+;5.19 INTEL® ADVANCED VECTOR EXTENSIONS 512 (INTEL® AVX-512)
+;512-bit instruction mnemonics in AVX-512F instructions that are not Intel AVX or AVX2 promotions include
+valignd/valignq
+vblendmpd/vblendmps
+vcompresspd/vcompressps
+vcvtpd2udq|vcvttpd2udq
+vcvtps2udq|vcvttps2udq
+vcvtqq2pd/vcvtqq2ps
+vcvtsd2usi|vcvttsd2usi
+vcvtss2usi|vcvttss2usi
+vcvtudq2pd/vcvtudq2ps
+vcvtusi2sd/vcvtusi2ss
+vexpandpd/vexpandps
+vextractf32x4/vextractf64x4
+vextracti32x4/vextracti64x4
+vfixupimmpd/vfixupimmps
+vfixupimmsd/vfixupimmss
+vgetexppd/vgetexpps
+vgetexpsd/vgetexpss
+vgetmantpd/vgetmantps
+vgetmantsd/vgetmantss
+vinsertf32x4/vinsertf64x4
+vmovdqa32/vmovdqa64
+vmovdqu32/vmovdqu64
+vpblendmd/vpblendmq
+vpbroadcastd/vpbroadcastq
+vpcmpd/vpcmpud
+vpcmpq/vpcmpuq
+vpcompressq/vpcompressd
+vpermi2d/vpermi2q
+vpermi2pd/vpermi2ps
+vpermt2d/vpermt2q
+vpermt2pd/vpermt2ps
+vpexpandd/vpexpandq
+vpmaxsq
+vpmaxud/vpmaxuq
+vpminsq
+vpminud/vpminuq
+vpmovsqb|vpmovusqb
+vpmovsqw|vpmovusqw
+vpmovsqd|vpmovusqd
+vpmovsdb|vpmovusdb
+vpmovsdw|vpmovusdw
+vprold/vprolq
+vprolvd/vprolvq
+vprord/vprorq
+vprorrd/vprorrq
+vpscatterdd/vpscatterdq
+vpscatterqd/vpscatterqq
+vpsraq
+vpsravq
+vptestnmd/vptestnmq
+vpterlogd/vpterlogq
+vptestmd/vptestmq
+vrcp14pd/vrcp14ps
+vrcp14sd/vrcp14ss
+vrndscalepd/vrndscaleps
+vrndscalesd/vrndscaless
+vrsqrt14pd/vrsqrt14ps
+vrsqrt14sd/vrsqrt14ss
+vscalepd/vscaleps
+vscalesd/vscaless
+vscatterdd/vscatterdq
+vscatterqd/vscatterqq
+vshuff32x4/vshuff64x2
+vshufi32x4/vshufi64x2
+
+;512-bit instruction mnemonics in AVX-512DQ that are not Intel AVX or AVX2 promotions include:
+vcvtpd2qq|vcvttpd2qq
+vcvtpd2uqq|vcvttpd2uqq
+vcvtps2qq|vcvttps2qq
+vcvtps2uqq|vcvttps2uqq
+vcvtuqq2pd/vcvtuqq2ps
+vextractf64x2
+vextracti64x2
+vfpclasspd/vfpclassps
+vfpclasssd/vfpclassss
+vinsertf64x2
+vinserti64x2
+vpmovm2d/vpmovm2q
+vpmovb2d/vpmovq2m
+vpmullq
+vrangepd/vrangeps
+vrangesd/vrangess
+vreducepd/vreduceps
+vreducesd/vreducess
+
+;512-bit instruction mnemonics in AVX-512BW that are not Intel AVX or AVX2 promotions include:
+vdbpsadbw
+vmovdqu8/vmovdqu16
+vpblendmb
+vpblendmw
+vpbroadcastb/vpbroadcastw
+vpcmpb/vpcmpub
+vpcmpw/vpcmpuw
+vpermw
+vpermi2b/vpermi2w
+vpmovm2b/vpmovm2w
+vpmovb2m/vpmovw2m
+vpmovswb|vpmovuswb
+vpsllvw
+vpsravw
+vpsrlvw
+vptestnmb/vptestnmw
+vptestmb/vptestmw
+vpbroadcastm
+vpconflictd/vpconflictq
+vplzcntd/vplzcntq
+
+;Opmask instructions include:
+kaddb/kaddw/kaddd/kaddq
+kandb/kandw/kandd/kandq
+kandnb/kandnw/kandnd/kandnq
+kmovb/kmovw/kmovd/kmovq
+knotb/knotw/knotd/knotq
+korb/korw/kord/korq
+kortestb/kortestw/kortestd/kortestq
+kshiftlb/kshiftlw/kshiftld/kshiftlq
+kshiftrb/kshiftrw/kshiftrd/kshiftrq
+ktestb/ktestw/ktestd/ktestq
+kunpckbw/kunpckwd/kunpckdq
+kxnorb/kxnorw/kxnord/kxnorq
+kxorb/kxorw/kxord/kxorq
+
+;512-bit instruction mnemonics in AVX-512ER include:
+vexp2pd/vexp2ps
+vexp2sd/vexp2ss
+vrcp28pd/vrcp28ps
+vrcp28sd/vrcp28ss
+vrsqrt28pd/vrsqrt28ps
+vrsqrt28sd/vrsqrt28ss
+
+;512-bit instruction mnemonics in AVX-512PF include:
+vgatherpf0dpd/vgatherpf0dps
+vgatherpf0qpd/vgatherpf0qps
+vgatherpf1dpd/vgatherpf1dps
+vgatherpf1qpd/vgatherpf1qps
+vscatterpf0dpd/vscatterpf0dps
+vscatterpf0qpd/vscatterpf0qps
+vscatterpf1dpd/vscatterpf1dps
+vscatterpf1qpd/vscatterpf1qps
+
+;512-bit instruction mnemonics in AVX512-FP16 include:
+vaddph/vaddsh
+vcmpph/vcmpsh
+vcomish
+vcvtdq2ph
+vcvtpd2ph
+vcvtph2dq/vcvtph2qq
+vcvtph2pd
+vcvtph2ps|vcvtph2psx
+vcvtph2qq
+vcvtph2udq/vcvtph2qq
+vcvtph2uw/vcvtph2w
+vcvtps2ph|vcvtps2phx
+vcvtqq2ph
+vcvtsd2sh
+vcvtsh2sd/vcvtsh2ss
+vcvtsh2si/vcvtsh2usi
+vcvtsi2sh
+vcvtss2sh
+vcvttph2dq/vcvttph2qq
+vcvttph2udq/vcvttph2uqq
+vcvttph2uw/vcvttph2w
+vcvttsh2si/vcvttsh2usi
+vcvtudq2ph
+vcvtuqq2ph
+vcvtusi2sh
+vcvtuw2ph
+vcvtw2ph
+vdivph/vdivsh
+vfmaddcph|vfcmaddcph
+vfmaddcsh|vfcmaddcsh
+vfmulcph|vfcmulcph
+vfmulcsh|vfcmulcsh
+vfmadd132ph|vfmadd213ph|vfmadd231ph|vfnmadd132ph|vfnmadd213ph|vfnmadd231ph
+vfmadd132sh|vfmadd213sh|vfmadd231sh|vfnmadd132sh|vfnmadd213sh|vfnmadd231sh
+vfmaddsub132ph|vfmaddsub213ph|vfmaddsub231ph
+vfmsubadd132ph|vfmsubadd213ph|vfmsubadd231ph
+vfmsub132ph|vfmsub213ph|vfmsub231ph|vfnmsub132ph|vfnmsub213ph|vfnmsub231ph
+vfmsub132sh|vfmsub213sh|vfmsub231sh|vfnmsub132sh|vfnmsub213sh|vfnmsub231sh
+vfpclassph/vfpclasssh
+vgetexpph/vgetexpsh
+vgetmantph/vgetmantsh
+vmaxph/vmaxps
+vminph/vminps
+vmovsh
+vmovw
+vmulph/vmulsh
+vrcpph/vrcpsh
+vreduceph/vreducesh
+vrndscaleph/vrndscalesh
+vrsqrtph/vrsqrtsh
+vscaleph/vscalesh
+vsqrtph/vsqrtsh
+vsubph/vsubsh
+vucomish
+
+;5.20 SYSTEM INSTRUCTIONS
+clac|stac|lgdt|sgdt|lldt|sldt|ltr|str|lidt|sidt|mov|lmsw|smsw|clts|arpl|lar|lsl|verr|verw|mov|invd|wbinvd|invlpg|invpcid
 lock
-hlt|rsm|rdmsr|wrmsr|rdpmc|rdtsc|rdtscp|sysenter|sysexit
-xsave|xsaveopt|xrstor|xgetbv|xsetbv|rdfsbase|rdgsbase|wrfsbase|wrgsbase
+hlt|rsm|rdmsr|wrmsr|rdpmc|rdtsc|rdtscp|sysenter|sysexit|xsave|xsavec|xsaveopt|xsaves|xrstor|xrstors|xgetbv|xsetbv|rdfsbase|rdgsbase|wrfsbase|wrgsbase
 
-;5.19 64-BIT MODE INSTRUCTIONS
+;5.21 64-BIT MODE INSTRUCTIONS
 cdqe|cmpsq|cmpxchg16b|lodsq|movsq|movzx|stosq|swapgs|syscall|sysret
 
-;5.20 VIRTUAL-MACHINE EXTENSIONS
+;5.22 VIRTUAL-MACHINE EXTENSIONS
 vmptrld|vmptrst|vmclear|vmread|vmwrite|vmlaunch|vmresume|vmxoff|vmxon|invept|invvpid|vmcall|vmfunc
 
-;5.21 SAFER MODE EXTENSIONS
+;5.23 SAFER MODE EXTENSIONS
 getsec
 [capabilities|enteraccs|exitac|senter|sexit|parameters|smctrl|wakeup]
 
+;5.24 INTEL® MEMORY PROTECTION EXTENSIONS
+bndmk|bndcl|bndcu|bndcn|bndmov|bndmov|bndldx|bndstx
+
+;5.25 INTEL® SOFTWARE GUARD EXTENSIONS
+; Table 5-3. Supervisor and User Mode Enclave Instruction Leaf Functions in Long-Form of SGX1
+encls|enclu
+[eadd|eenter|eblock|eexit|ecreate|egetkey|edbgrd|ereport|edbgwr|eresume|eextend|einit|eldb|eldu|epa|eremove|etrack|ewb]
+
+; 5.26 SHADOW STACK MANAGEMENT INSTRUCTIONS
+clrssbsy|incssp|rdssp|rstorssp|saveprevssp|setssbsy|wrss|wruss
+
+;5.27 CONTROL TRANSFER TERMINATING INSTRUCTIONS
+endbr32|endbr64
+
+;5.28 INTEL® AMX INSTRUCTIONS
+ldtilecfg|sttilecfg|tdpbf16ps|tdpbssd|tdpbsud|tdpbusd|tdpbuud|tileloadd|tileloaddt1|tilerelease|tilestored|tilezero
+
+;5.29 USER INTERRUPT INSTRUCTIONS
+clui|senduipi|stui|testui|uiret
+
+;5.30 ENQUEUE STORE INSTRUCTIONS
+enqcmd|enqcmds
+
+
 ;====================================================================
-;Intel® 64 and IA-32 Architectures Software Developer’s Manual. Vol 2 (2015-01)
-aaa|aad|aam|aas|adc|adcx|add|addpd|addps|addsd|addss|addsubpd|addsubps|adox
-aesdec|aesdeclast|aesenc|aesenclast|aesimc|aeskeygenassist
-and|andn|andpd|andps|andnpd|andnps|arpl
-
-blendpd|bextr|blendps|blendvpd|blendvps|blsi|blsmsk|blsr|bound|bsf|bsr|bswap|bt|btc|btr|bts|bzhi
-
-call|cbw|cwde|cdqe|clac|clc|cld|clflush|cli|clts|cmc
-cmova|cmovae|cmovb|cmovbe|cmovc|cmove|cmovg|cmovge|cmovl|cmovle
-cmovna|cmovnae|cmovnb|cmovnbe|cmovnc|cmovne|cmovng|cmovnge|cmovnl|cmovnle
-cmovno|cmovnp|cmovns|cmovnz|cmovo|cmovp|cmovpe|cmovpo|cmovs|cmovz
-cmp|cmppd|cmpps|cmps|cmpsb|cmpsw|cmpsd|cmpsq|cmpsd|cmpss|cmpxchg|cmpxchg8b|cmpxchg16b|comisd|comiss|cpuid|crc32
-cvtdq2pd|cvtdq2ps|cvtpd2dq|cvtpd2pi|cvtpd2ps|cvtpi2pd|cvtpi2ps|cvtps2dq|cvtps2pd|cvtps2pi|cvtsd2si|cvtsd2ss
-cvtsi2sd|cvtsi2ss|cvtss2sd|cvtss2si|cvttpd2dq|cvttpd2pi|cvttps2dq|cvttps2pi|cvttsd2si|cvttss2si|cwd|cdq|cqo
-
+;Intel® 64 and IA-32 Architectures Software Developer’s Manual. Vol 2 (2023-06)
+aaa|aad|aam|aas|adc|adcx|add|addpd|addps|addsd|addss|addsubpd|addsubps|adox|aesdec|aesdec128kl|aesdec256kl|aesdeclast|aesdecwide128kl|aesdecwide256kl|aesenc|aesenc128kl|aesenc256kl|aesenclast|aesencwide128kl|aesencwide256kl|aesimc|aeskeygenassist|and|andn|andpd|andps|andnpd|andnps|arpl
+bextr|blendpd|blendps|blendvpd|blendvps|blsi|blsmsk|blsr|bndcl|bndcu|bndcn|bndldx|bndmk|bndmov|bndstx|bound|bsf|bsr|bswap|bt|btc|btr|bts|bzhi
+call|cbw|cwde|cdqe|clac|clc|cld|cldemote|clflush|clflushopt|cli|clrssbsy|clts|clui|clwb|cmc|cmova|cmovae|cmovb|cmovbe|cmovc|cmove|cmovg|cmovge|cmovl|cmovle|cmovna|cmovnae|cmovnb|cmovnbe|cmovnc|cmovne|cmovng|cmovnge|cmovnl|cmovnle|cmovno|cmovnp|cmovns|cmovnz|cmovo|cmovp|cmovpe|cmovpo|cmovs|cmovz|cmp|cmppd|cmpps|cmps|cmpsb|cmpsw|cmpsd|cmpsq|cmpsd|cmpss|cmpxchg|cmpxchg8b|cmpxchg16b|comisd|comiss|cpuid|crc32|cvtdq2pd|cvtdq2ps|cvtpd2dq|cvtpd2pi|cvtpd2ps|cvtpi2pd|cvtpi2ps|cvtps2dq|cvtps2pd|cvtps2pi|cvtsd2si|cvtsd2ss|cvtsi2sd|cvtsi2ss|cvtss2sd|cvtss2si|cvttpd2dq|cvttpd2pi|cvttps2dq|cvttps2pi|cvttsd2si|cvttss2si|cwd|cdq|cqo
 daa|das|dec|div|divpd|divps|divsd|divss|dppd|dpps
-
-emms|enter|extractps
-
-f2xm1|fabs|fadd|faddp|fiadd|fbld|fbstp|fchs|fclex|fnclex
-fcmovb|fcmove|fcmovbe|fcmovu|fcmovnb|fcmovne|fcmovnbe|fcmovnu
-fcom|fcomp|fcompp|fcomi|fcomip|fucomi|fucomip|fcos|fdecstp|fdiv|fdivp|fidiv|fdivr|fdivrp|fidivr|ffree
-ficom|ficomp|fild|fincstp|finit|fninit|fist|fistp|fisttp|fld|fld1|fldl2t|fldl2e|fldpi|fldlg2|fldln2|fldz|fldcw|fldenv
-fmul|fmulp|fimul|fnop|fpatan|fprem|fprem1|fptan|frndint|frstor|fsave|fnsave|fscale|fsin|fsincos|fsqrt|fst|fstp
-fstcw|fnstcw|fstenv|fnstenv|fstsw|fnstsw|fsub|fsubp|fisub|fsubr|fsubrp|fisubr|ftst|fucom|fucomp|fucompp|fxam|fxch
-fxrstor|fxrstor64|fxsave|fxsave64|fxtract|fyl2x|fyl2xp1
-
-haddpd|haddps|hlt|hsubpd|hsubps
-
-idiv|imul|in|inc|ins|insb|insw|insd|insertps|int n|into|int 3|invd|invlpg|invpcid|iret|iretd|iretq
-
-ja|jae|jb|jbe|jc|jcxz|jecxz|jrcxz|je|jg|jge|jl|jle|jna|jnae|jnb|jnbe|jnc|jne|jng|jnge|jnl|jnle|jno|jnp|jns|jnz|jo|jp|jpe|jpo|js|jz
-jmp
-
-lahf|lar|lddqu|ldmxcsr|lds|les|lfs|lgs|lss|lea|leave|lfence|lgdt|lidt|lldt|lmsw|lock|lods|lodsb|lodsw|lodsd|lodsq
-loop|loope|loopne
-lsl|ltr|lzcnt
-
-maskmovdqu|maskmovq|maxpd|maxps|maxsd|maxss|mfence|minpd|minps|minsd|minss|monitor
-mov|movapd|movaps|movbe|movd|movq|movddup|movdqa|movdqu|movdq2q|movhlps|movhpd|movhps|movlhps|movlpd|movlps
-movmskpd|movmskps|movntdqa|movntdq|movnti|movntpd|movntps|movntq|movq2dq|movs|movsb|movsw|movsd|movsq
-movshdup|movsldup|movss|movsx|movsxd|movupd|movups|movzx|mpsadbw|mul|mulpd|mulps|mulsd|mulss|mulx|mwait
-
+emms|encodekey128|encodekey256|endbr32|endbr64|enter|enqcmd|enqcmds|extractps
+f2xm1|fabs|fadd|faddp|fiadd|fbld|fbstp|fchs|fclex|fnclex|fcmovb|fcmove|fcmovbe|fcmovu|fcmovnb|fcmovne|fcmovnbe|fcmovnu|fcom|fcomp|fcompp|fcomi|fcomip|fucomi|fucomip|fcos|fdecstp|fdiv|fdivp|fidiv|fdivr|fdivrp|fidivr|ffree|ficom|ficomp|fild|fincstp|finit|fninit|fist|fistp|fisttp|fld|fld1|fldl2t|fldl2e|fldpi|fldlg2|fldln2|fldz|fldcw|fldenv|fmul|fmulp|fimul|fnop|fpatan|fprem|fprem1|fptan|frndint|frstor|fsave|fnsave|fscale|fsin|fsincos|fsqrt|fst|fstp|fstcw|fnstcw|fstenv|fnstenv|fstsw|fnstsw|fsub|fsubp|fisub|fsubr|fsubrp|fisubr|ftst|fucom|fucomp|fucompp|fxam|fxch|fxrstor|fxrstor64|fxsave|fxsave64|fxtract|fyl2x|fyl2xp1
+gf2p8affineinvqb|gf2p8affineqb|gf2p8mulb
+haddpd|haddps|hlt|hreset|hsubpd|hsubps
+idiv|imul|in|inc|incsspd|incsspq|ins|insb|insw|insd|insertps|int n|into|int3|int1|invd|invlpg|invpcid|iret|iretd|iretq
+ja|jae|jb|jbe|jc|jcxz|jecxz|jrcxz|je|jg|jge|jl|jle|jna|jnae|jnb|jnbe|jnc|jne|jng|jnge|jnl|jnle|jno|jnp|jns|jnz|jo|jp|jpe|jpo|js|jz|jmp
+kaddw|kaddb|kaddq|kaddd|kandw|kandb|kandq|kandd|kandnw|kandnb|kandnq|kandnd|kmovw|kmovb|kmovq|kmovd|knotw|knotb|knotq|knotd|korw|korb|korq|kord|kortestw|kortestb|kortestq|kortestd|kshiftlw|kshiftlb|kshiftlq|kshiftld|kshiftrw|kshiftrb|kshiftrq|kshiftrd|ktestw|ktestb|ktestq|ktestd|kunpckbw|kunpckwd|kunpckdq|kxnorw|kxnorb|kxnorq|kxnord|kxorw|kxorb|kxorq|kxord
+lahf|lar|lddqu|ldmxcsr|lds|les|lfs|lgs|lss|ldtilecfg|lea|leave|lfence|lgdt|lidt|lldt|lmsw|loadiwkey|lock|lods|lodsb|lodsw|lodsd|lodsq|loop|loope|loopne|lsl|ltr|lzcnt
+maskmovdqu|maskmovq|maxpd|maxps|maxsd|maxss|mfence|minpd|minps|minsd|minss|monitor|mov|movapd|movaps|movbe|movd|movq|movddup|movdiri|movdir64b|movdqa|vmovdqa32|vmovdqa64|movdqu|vmovdqu8|vmovdqu16|vmovdqu32|vmovdqu64|movdq2q|movhlps|movhpd|movhps|movlhps|movlpd|movlps|movmskpd|movmskps|movntdqa|movntdq|movnti|movntpd|movntps|movntq|movq2dq|movs|movsb|movsw|movsd|movsq|movsd|movshdup|movsldup|movss|movsx|movsxd|movupd|movups|movzx|mpsadbw|mul|mulpd|mulps|mulsd|mulss|mulx|mwait
 neg|nop|not
-
 or|orpd|orps|out|outs|outsb|outsw|outsd
+pabsb|pabsw|pabsd|pabsq|packsswb|packssdw|packusdw|packuswb|paddb|paddw|paddd|paddq|paddsb|paddsw|paddusb|paddusw|palignr|pand|pandn|pause|pavgb|pavgw|pblendvb|pblendw|pclmulqdq|pcmpeqb|pcmpeqw|pcmpeqd|pcmpeqq|pcmpestri|pcmpestrm|pcmpgtb|pcmpgtw|pcmpgtd|pcmpgtq|pcmpistri|pcmpistrm|pconfig|pdep|pext|pextrb|pextrd|pextrq|pextrw|phaddw|phaddd|phaddsw|phminposuw|phsubw|phsubd|phsubsw|pinsrb|pinsrd|pinsrq|pinsrw|pmaddubsw|pmaddwd|pmaxsb|pmaxsw|pmaxsd|pmaxsq|pmaxub|pmaxuw|pmaxud|pmaxuq|pminsb|pminsw|pminsd|pminsq|pminub|pminuw|pminud|pminuq|pmovmskb|pmovsxbw|pmovsxbd|pmovsxbq|pmovsxwd|pmovsxwq|pmovsxdq|vpmovsxbw|vpmovsxbd|vpmovsxbq|vpmovsxwd|vpmovsxwq|vpmovsxdq|pmovzxbw|pmovzxbd|pmovzxbq|pmovzxwd|pmovzxwq|pmovzxdq|vpmovzxbw|vpmovzxbd|vpmovzxbq|vpmovzxwd|vpmovzxwq|vpmovzxdq|pmuldq|pmulhrsw|pmulhuw|pmulhw|pmulld|pmullq|pmullw|pmuludq|pop|popa|popad|popcnt|popf|popfd|popfq|por|prefetcht0|prefetcht1|prefetcht2|prefetchnta|prefetchw|psadbw|pshufb|pshufd|pshufhw|pshuflw|pshufw|psignb|psignw|psignd|pslldq|psllw|pslld|psllq|psraw|psrad|psraq|psrldq|psrlw|psrld|psrlq|psubb|psubw|psubd|psubq|psubsb|psubsw|psubusb|psubusw|ptest|ptwrite|punpckhbw|punpckhwd|punpckhdq|punpckhqdq|punpcklbw|punpcklwd|punpckldq|punpcklqdq|push|pusha|pushad|pushf|pushfd|pushfq|pxor
+rcl|rcr|rol|ror|rcpps|rcpss|rdfsbase|rdgsbase|rdmsr|rdpid|rdpkru|rdpmc|rdrand|rdseed|rdsspd|rdsspq|rdtsc|rdtscp|rep|repe|repz|repne|repnz|ret|rorx|roundpd|roundps|roundsd|roundss|rsm|rsqrtps|rsqrtss|rstorssp
+sahf|sal|sar|shl|shr|sarx|shlx|shrx|saveprevssp|sbb|scas|scasb|scasw|scasd|scasq|senduipi|serialize|seta|setae|setb|setbe|setc|sete|setg|setge|setl|setle|setna|setnae|setnb|setnbe|setnc|setne|setng|setnge|setnl|setnle|setno|setnp|setns|setnz|seto|setp|setpe|setpo|sets|setz|setssbsy|sfence|sgdt|sha1rnds4|sha1nexte|sha1msg1|sha1msg2|sha256rnds2|sha256msg1|sha256msg2|shld|shrd|shufpd|shufps|sidt|sldt|smsw|sqrtpd|sqrtps|sqrtsd|sqrtss|stac|stc|std|sti|stmxcsr|stos|stosb|stosw|stosd|stosq|str|sttilecfg|stui|sub|subpd|subps|subsd|subss|swapgs|syscall|sysenter|sysexit|sysret
+tdpbf16ps|tdpbssd|tdpbsud|tdpbusd|tdpbuud|test|testui|tileloadd|tileloaddt1|tilerelease|tilestored|tilezero|tpause|tzcnt
+ucomisd|ucomiss|ud|uiret|umonitor|umwait|unpckhpd|unpckhps|unpcklpd|unpcklps
+vaddph|vaddsh|valignd|valignq|vblendmpd|vblendmps|vbroadcastss|vbroadcastsd|vbroadcastf128|vbroadcastf32x2|vbroadcastf32x4|vbroadcastf64x2|vbroadcastf32x8|vbroadcastf64x4|vcmpph|vcmpsh|vcomish|vcompresspd|vcompressps|vcvtdq2ph|vcvtne2ps2bf16|vcvtneps2bf16|vcvtpd2ph|vcvtpd2qq|vcvtpd2udq|vcvtpd2uqq|vcvtph2dq|vcvtph2pd|vcvtph2ps|vcvtph2psx|vcvtph2qq|vcvtph2udq|vcvtph2uqq|vcvtph2uw|vcvtph2w|vcvtps2ph|vcvtps2phx|vcvtps2qq|vcvtps2udq|vcvtps2uqq|vcvtqq2pd|vcvtqq2ph|vcvtqq2ps|vcvtsd2sh|vcvtsd2usi|vcvtsh2sd|vcvtsh2si|vcvtsh2ss|vcvtsh2usi|vcvtsi2sh|vcvtss2sh|vcvtss2usi|vcvttpd2qq|vcvttpd2udq|vcvttpd2uqq|vcvttph2dq|vcvttph2qq|vcvttph2udq|vcvttph2uqq|vcvttph2uw|vcvttph2w|vcvttps2qq|vcvttps2udq|vcvttps2uqq|vcvttsd2usi|vcvttsh2si|vcvttsh2usi|vcvttss2usi|vcvtudq2pd|vcvtudq2ph|vcvtudq2ps|vcvtuqq2pd|vcvtuqq2ph|vcvtusi2sh|vcvtuqq2ps|vcvtusi2sd|vcvtusi2ss|vcvtuw2ph|vcvtw2ph|vdbpsadbw|vdivph|vdivsh|vdpbf16ps|vexpandpd|vexpandps|verr|verw|vextractf128|vextractf32x4|vextractf64x2|vextractf32x8|vextractf64x4|vextracti128|vextracti32x4|vextracti64x2|vextracti32x8|vextracti64x4|vfcmaddcph|vfmaddcph|vfcmaddcsh|vfmaddcsh|vfcmulcph|vfmulcph|vfcmulcsh|vfmulcsh|vfixupimmpd|vfixupimmps|vfixupimmsd|vfixupimmss|vfmadd132pd|vfmadd213pd|vfmadd231pd|vfmadd132ph|vfmadd213ph|vfmadd231ph|vfnmadd132ph|vfnmadd213ph|vfnmadd231ph|vfmadd132ps|vfmadd213ps|vfmadd231ps|vfmadd132sd|vfmadd213sd|vfmadd231sd|vfmadd132sh|vfmadd213sh|vfmadd231sh|vfnmadd132sh|vfnmadd213sh|vfnmadd231sh|vfmadd132ss|vfmadd213ss|vfmadd231ss|vfmaddsub132pd|vfmaddsub213pd|vfmaddsub231pd|vfmaddsub132ph|vfmaddsub213ph|vfmaddsub231ph|vfmaddsub132ps|vfmaddsub213ps|vfmaddsub231ps|vfmsub132pd|vfmsub213pd|vfmsub231pd|vfmsub132ph|vfmsub213ph|vfmsub231ph|vfnmsub132ph|vfnmsub213ph|vfnmsub231ph|vfmsub132ps|vfmsub213ps|vfmsub231ps|vfmsub132sd|vfmsub213sd|vfmsub231sd|vfmsub132sh|vfmsub213sh|vfmsub231sh|vfnmsub132sh|vfnmsub213sh|vfnmsub231sh|vfmsub132ss|vfmsub213ss|vfmsub231ss|vfmsubadd132pd|vfmsubadd213pd|vfmsubadd231pd|vfmsubadd132ph|vfmsubadd213ph|vfmsubadd231ph|vfmsubadd132ps|vfmsubadd213ps|vfmsubadd231ps|vfnmadd132pd|vfnmadd213pd|vfnmadd231pd|vfnmadd132ps|vfnmadd213ps|vfnmadd231ps|vfnmadd132sd|vfnmadd213sd|vfnmadd231sd|vfnmadd132ss|vfnmadd213ss|vfnmadd231ss|vfnmsub132pd|vfnmsub213pd|vfnmsub231pd|vfnmsub132ps|vfnmsub213ps|vfnmsub231ps|vfnmsub132sd|vfnmsub213sd|vfnmsub231sd|vfnmsub132ss|vfnmsub213ss|vfnmsub231ss|vfpclasspd|vfpclassph|vfpclassps|vfpclasssd|vfpclasssh|vfpclassss|vgatherdpd|vgatherqpd|vgatherdps|vgatherqps|vgatherdps|vgatherdpd|vgatherqps|vgatherqpd|vgetexppd|vgetexpph|vgetexpps|vgetexpsd|vgetexpsh|vgetexpss|vgetmantpd|vgetmantph|vgetmantps|vgetmantsd|vgetmantsh|vgetmantss|vinsertf128|vinsertf32x4|vinsertf64x2|vinsertf32x8|vinsertf64x4|vinserti128|vinserti32x4|vinserti64x2|vinserti32x8|vinserti64x4|vmaskmov|vmaxph|vmaxsh|vminph|vminsh|vmovsh|vmovw|vmulph|vmulsh|vp2intersectd|vp2intersectq|vpblendd|vpblendmb|vpblendmw|vpblendmd|vpblendmq|vpbroadcastb|vpbroadcastw|vpbroadcastd|vpbroadcastq|vpbroadcast|vpbroadcastm|vpcmpb|vpcmpub|vpcmpd|vpcmpud|vpcmpq|vpcmpuq|vpcmpw|vpcmpuw|vpcompressb|vcompressw|vpcompressd|vpcompressq|vpconflictd|vpconflictq|vpdpbusd|vpdpbusds|vpdpwssd|vpdpwssds|vperm2f128|vperm2i128|vpermb|vpermd|vpermw|vpermi2b|vpermi2w|vpermi2d|vpermi2q|vpermi2ps|vpermi2pd|vpermilpd|vpermilps|vpermpd|vpermps|vpermq|vpermt2b|vpermt2w|vpermt2d|vpermt2q|vpermt2ps|vpermt2pd|vpexpandb|vpexpandw|vpexpandd|vpexpandq|vpgatherdd|vpgatherqd|vpgatherdd|vpgatherdq|vpgatherdq|vpgatherqq|vpgatherqd|vpgatherqq|vplzcntd|vplzcntq|vpmadd52huq|vpmadd52luq|vpmaskmov|vpmovb2m|vpmovw2m|vpmovd2m|vpmovq2m|vpmovdb|vpmovsdb|vpmovusdb|vpmovdw|vpmovsdw|vpmovusdw|vpmovm2b|vpmovm2w|vpmovm2d|vpmovm2q|vpmovqb|vpmovsqb|vpmovusqb|vpmovqd|vpmovsqd|vpmovusqd|vpmovqw|vpmovsqw|vpmovusqw|vpmovwb|vpmovswb|vpmovuswb|vpmultishiftqb|vpopcnt|vprold|vprolvd|vprolq|vprolvq|vprord|vprorvd|vprorq|vprorvq|vpscatterdd|vpscatterdq|vpscatterqd|vpscatterqq|vpshld|vpshldv|vpshrd|vpshrdv|vpshufbitqmb|vpsllvw|vpsllvd|vpsllvq|vpsravw|vpsravd|vpsravq|vpsrlvw|vpsrlvd|vpsrlvq|vpternlogd|vpternlogq|vptestmb|vptestmw|vptestmd|vptestmq|vptestnmb|vptestnmw|vptestnmd|vptestnmq|vrangepd|vrangeps|vrangesd|vrangess|vrcp14pd|vrcp14sd|vrcp14ps|vrcp14ss|vrcpph|vrcpsh|vreducepd|vreduceph|vreduceps|vreducesd|vreducesh|vreducess|vrndscalepd|vrndscaleph|vrndscaleps|vrndscalesd|vrndscalesh|vrndscaless|vrsqrt14pd|vrsqrt14sd|vrsqrt14ps|vrsqrt14ss|vrsqrtph|vrsqrtsh|vscalefpd|vscalefph|vscalefps|vscalefsd|vscalefsh|vscalefss|vscatterdps|vscatterdpd|vscatterqps|vscatterqpd|vshuff32x4|vshuff64x2|vshufi32x4|vshufi64x2|vsqrtph|vsqrtsh|vsubph|vsubsh|vtestpd|vtestps|vucomish|vzeroall|vzeroupper
+wait|fwait|wbinvd|wbnoinvd|wrfsbase|wrgsbase|wrmsr|wrpkru|wrssd|wrssq|wrussd|wrussq
+xacquire|xrelease|xabort|xadd|xbegin|xchg|xend|xgetbv|xlat|xlatb|xor|xorpd|xorps|xresldtrk|xrstor|xrstor64|xrstors|xrstors64|xsave|xsave64|xsavec|xsavec64|xsaveopt|xsaveopt64|xsaves|xsaves64|xsetbv|xsusldtrk|xtest
 
-pabsb|pabsw|pabsd|packsswb|packssdw|packusdw|packuswb|paddb|paddw|paddd|paddq|paddsb|paddsw|paddusb|paddusw
-palignr|pand|pandn|pause|pavgb|pavgw|pblendvb|pblendw|pclmulqdq
-pcmpeqb|pcmpeqw|pcmpeqd|pcmpeqq|pcmpestri|pcmpestrm|pcmpgtb|pcmpgtw|pcmpgtd|pcmpgtq|pcmpistri|pcmpistrm
-pdep|pext|pextrb|pextrd|pextrq|pextrw|phaddw|phaddd|phaddsw|phminposuw|phsubw|phsubd|phsubsw|pinsrb|pinsrd|pinsrq|pinsrw
-pmaddubsw|pmaddwd|pmaxsb|pmaxsd|pmaxsw|pmaxub|pmaxud|pmaxuw|pminsb|pminsd|pminsw|pminub|pminud|pminuw|pmovmskb
-pmovsxbw|pmovsxbd|pmovsxbq|pmovsxwd|pmovsxwq|pmovsxdq
-pmovzxbw|pmovzxbd|pmovzxbq|pmovzxwd|pmovzxwq|pmovzxdq
-pmuldq|pmulhrsw|pmulhuw|pmulhw|pmulld|pmullw|pmuludq|pop|popa|popad|popcnt|popf|popfd|popfq|por
-prefetcht0|prefetcht1|prefetcht2|prefetchnta|prefetchw|prefetchwt1
-psadbw|pshufb|pshufd|pshufhw|pshuflw|pshufw|psignb|psignw|psignd
-pslldq|psllw|pslld|psllq|psraw|psrad|psrldq|psrlw|psrld|psrlq
-psubb|psubw|psubd|psubq|psubsb|psubsw|psubusb|psubusw|ptest
-punpckhbw|punpckhwd|punpckhdq|punpckhqdq|punpcklbw|punpcklwd|punpckldq|punpcklqdq
-push|pusha|pushad|pushf|pushfd|pushfq|pxor
-
-rcl|rcr|rol|ror|rcpps|rcpss|rdfsbase|rdgsbase|rdmsr|rdpkru|rdpmc|rdrand|rdseed|rdtsc|rdtscp
-rep|repe|repz|repne|repnz|ret|rorx|roundpd|roundps|roundsd|roundss|rsm|rsqrtps|rsqrtss
-
-sahf|sal|sar|shl|shr|sarx|shlx|shrx|sbb|scas|scasb|scasw|scasd|scasq
-seta|setae|setb|setbe|setc|sete|setg|setge|setl|setle|seto|setp|setpe|setpo|sets|setz
-setna|setnae|setnb|setnbe|setnc|setne|setng|setnge|setnl|setnle|setno|setnp|setns|setnz
-sfence|sgdt|shld|shrd|shufpd|shufps|sidt|sldt|smsw|sqrtpd|sqrtps|sqrtsd|sqrtss
-stac|stc|std|sti|stmxcsr|stos|stosb|stosw|stosd|stosq|str|sub|subpd|subps|subsd|subss|swapgs|syscall|sysenter|sysexit|sysret
-
-test|tzcnt
-
-ucomisd|ucomiss|ud2|unpckhpd|unpckhps|unpcklpd|unpcklps
-
-vbroadcastss|vbroadcastsd|vbroadcastf128
-vcvtph2ps|vcvtps2ph|verr|verw
-vextractf128|vextracti128|vfmadd132pd|vfmadd213pd|vfmadd231pd|vfmadd132ps|vfmadd213ps|vfmadd231ps|vfmadd132sd|vfmadd213sd|vfmadd231sd|vfmadd132ss|vfmadd213ss|vfmadd231ss
-vfmaddsub132pd|vfmaddsub213pd|vfmaddsub231pd|vfmaddsub132ps|vfmaddsub213ps|vfmaddsub231ps
-vfmsubadd132pd|vfmsubadd213pd|vfmsubadd231pd|vfmsubadd132ps|vfmsubadd213ps|vfmsubadd231ps
-vfmsub132pd|vfmsub213pd|vfmsub231pd|vfmsub132ps|vfmsub213ps|vfmsub231ps|vfmsub132sd|vfmsub213sd|vfmsub231sd|vfmsub132ss|vfmsub213ss|vfmsub231ss
-vfnmadd132pd|vfnmadd213pd|vfnmadd231pd|vfnmadd132ps|vfnmadd213ps|vfnmadd231ps|vfnmadd132sd|vfnmadd213sd|vfnmadd231sd|vfnmadd132ss|vfnmadd213ss|vfnmadd231ss
-vfnmsub132pd|vfnmsub213pd|vfnmsub231pd|vfnmsub132ps|vfnmsub213ps|vfnmsub231ps|vfnmsub132sd|vfnmsub213sd|vfnmsub231sd|vfnmsub132ss|vfnmsub213ss|vfnmsub231ss
-vgatherdpd|vgatherqpd|vgatherdps|vgatherqps|vpgatherdd|vpgatherqd|vpgatherdq|vpgatherqq
-vinsertf128|vinserti128|vmaskmovps|vmaskmovpd|vpblendd
-vpbroadcastb|vpbroadcastw|vpbroadcastd|vpbroadcastq|vbroadcasti128
-vpermd|vpermpd|vpermps|vpermq|vperm2i128|vpermilpd|vpermilps|vperm2f128|vpmaskmovd|vpmaskmovq
-vpsllvd|vpsllvq|vpsravd|vpsrlvd|vpsrlvq|vtestpd|vtestps|vzeroall|vzeroupper
-
-wait|fwait|wbinvd|wrfsbase|wrgsbase|wrmsr|wrpkru
-
-xacquire|xrelease|xabort|xadd|xbegin|xchg|xend|xgetbv|xlat|xlatb|xor|xorpd|xorps
-xrstor|xrstor64|xrstors|xrstors64|xsave|xsave64|xsavec|xsavec64|xsaveopt|xsaveopt64|xsaves|xsaves64|xsetbv|xtest
-
+;7 SAFER MODE EXTENSIONS REFERENCE
+;7.2.2 SMX Instruction Summary
 getsec[capabilities]|getsec[enteraccs]|getsec[exitac]|getsec[senter]|getsec[sexit]|getsec[parameters]|getsec[smctrl]|getsec[wakeup]|
+
+; 8 INSTRUCTION SET REFERENCE UNIQUE TO INTEL® XEON PHI™ PROCESSORS
+prefetchwt1|v4fmaddps|v4fnmaddps|v4fmaddss|v4fnmaddss|vexp2pd|vexp2ps|vgatherpf0dps|vgatherpf0qps|vgatherpf0dpd|vgatherpf0qpd|vgatherpf1dps|vgatherpf1qps|vgatherpf1dpd|vgatherpf1qpd|vp4dpwssds|vp4dpwssd|vrcp28pd|vrcp28sd|vrcp28ps|vrcp28ss|vrsqrt28pd|vrsqrt28sd|vrsqrt28ps|vrsqrt28ss|vscatterpf0dps|vscatterpf0qps|vscatterpf0dpd|vscatterpf0qpd|vscatterpf1dps|vscatterpf1qps|vscatterpf1dpd|vscatterpf1qpd|
+
+
+
+
+
 
 ;====================================================================
 ;Intel® Architecture Instruction Set Extensions Programming Reference (2014-10)
@@ -685,7 +825,7 @@ fsub|fsubp|fisub|fsubr|fsubrp|fisubr|ftst|fucom|fucomp|fucompp|fucomi|fucomip|fw
 
 ;====================================================================
 ;legacy
-retn|retf
+retn|retf|ud2
 
 ;undocumented
 icebp
