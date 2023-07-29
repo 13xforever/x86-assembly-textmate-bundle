@@ -188,7 +188,7 @@ repository:
           '0': {name: punctuation.definition.string.end.c}
     
     - name: meta.preprocessor.c
-      begin: ^\s*[%#]\s*((xi?)?define|defined|elif(def)?|else|if(macro|ctx|idni?|num|str)?|ifn?def|line|(end)?macro|pragma|undef|endif)\b
+      begin: ^\s*[%#]\s*(i?x?define|defined|elif(def)?|else|if(macro|ctx|idni?|num|str)?|ifn?def|line|(i|end)?macro|pragma|undef|endif)\b
       end: (?=(?://|/\*))|$
       captures:
         '1': {name: keyword.control.import.c}
@@ -197,7 +197,7 @@ repository:
         name: punctuation.separator.continuation.c
 
     - name: meta.preprocessor.nasm
-      begin: ^\s*[#%]\s*(assign|strlen|substr|(end|exit)?rep|push|pop)\b
+      begin: ^\s*[#%]\s*(assign|strlen|substr|(end|exit)?rep|push|pop|rotate)\b
       end: $
       captures:
         '1': {name: keyword.control}
