@@ -12,6 +12,8 @@ Features
   * AVX/AVX2/AVX512, including pseudo-ops
   * AES-NI/SHA
   * VMX/SMX/NPX/SGX
+  * Key Locker
+  * AVX10/APX
   * other AMD/Cyrix/VIA and planned future Intel extensions
 
 Source code

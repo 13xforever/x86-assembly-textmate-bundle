@@ -1012,14 +1012,18 @@ contexts:
     - include: mnemonics-aesni
     - include: mnemonics-avx
     - include: mnemonics-avx2
+    - include: mnemonics-avx512
     - include: mnemonics-tsx
     - include: mnemonics-system
     - include: mnemonics-64bit
     - include: mnemonics-vmx
     - include: mnemonics-smx
+    - include: mnemonics-cet
     - include: mnemonics-intel-isa-sgx
     - include: mnemonics-intel-isa-mpx
     - include: mnemonics-intel-isa-sha
+    - include: mnemonics-intel-isa-opmask
+    - include: mnemonics-intel-isa-keylocker
     - include: mnemonics-supplemental-amd
     - include: mnemonics-supplemental-cyrix
     - include: mnemonics-supplemental-via
@@ -1225,6 +1229,37 @@ contexts:
       scope: keyword.operator.word.mnemonic.avx2.blend
     - match: '(?i)\b(vp?gather[dq][dq]|vgather([dq]|dq)p[ds])\b'
       scope: keyword.operator.word.mnemonic.avx2.gather
+  mnemonics-avx512:
+    - match: '(?i)\b(vblendm(pd|ps)|vpblendm[bdqw])\b'
+      scope: keyword.operator.word.mnemonic.avx512.blend
+    - match: '(?i)\b(vbroadcast[fi](32x[248]|64x[24])|v(extract|insert)[fi](32x[48]|64x[24])|vshuf[fi](32x4|64x2)|vpbroadcastm(b2q|w2d))\b'
+      scope: keyword.operator.word.mnemonic.avx512.bits-mov
+    - match: '(?i)\b(v(compress|expand)p[ds]|vp(compress|expand|conflict)[dq])\b'
+      scope: keyword.operator.word.mnemonic.avx512.compress
+    - match: '(?i)\b(vcvt(t?p[sd]2(udq|u?qq)|(udq|u?qq)2p[ds]|t?s[ds]2usi|usi2s[ds]))\b'
+      scope: keyword.operator.word.mnemonic.avx512.conversion
+    - match: '(?i)\b(v(fixupimm|fpclass|get(exp|mant)|range|(rcp|rsqrt)(14|28)|reduce|rndscale|scalef)([ps][ds]))\b'
+      scope: keyword.operator.word.mnemonic.avx512.math
+    - match: '(?i)\b(v(exp2p[ds]|(scatter|(gather|scatter)pf[01])[dq]p[ds]))\b'
+      scope: keyword.operator.word.mnemonic.avx512.math
+    - match: '(?i)\b(vmovdq(a(32|64)|u(8|16|32|64)))\b'
+      scope: keyword.operator.word.mnemonic.avx512.simd-integer
+    - match: '(?i)\b(vp(andn?|x?or)[dq])\b'
+      scope: keyword.operator.word.mnemonic.avx512.logical
+    - match: '(?i)\b(vpcmpu?[dqw])\b'
+      scope: keyword.operator.word.mnemonic.avx512.packed-comparison
+    - match: '(?i)\b(vp(absq|(lzcnt|ternlog)[dq]|madd52[lh]uq|(max|min)[su]q|mullq))\b'
+      scope: keyword.operator.word.mnemonic.avx512.packed-math
+    - match: '(?i)\b(vpmov(m2[bdqw]|[bdqw]2m|(u?s)?([qd][bw]|qd|wb)))\b'
+      scope: keyword.operator.word.mnemonic.avx512.packed-mov
+    - match: '(?i)\b(vp(ro[rl]v?[dq]|scatter[dq][dq]))\b'
+      scope: keyword.operator.word.mnemonic.avx512.packed-shift
+    - match: '(?i)\b(vptestn?m[bdqw])\b'
+      scope: keyword.operator.word.mnemonic.avx512.packed-test
+    - match: '(?i)\b(vperm([bdw]|[it]2([bdwq]|p[ds])))\b'
+      scope: keyword.operator.word.mnemonic.avx512.permutations
+    - match: '(?i)\b(valign[dq]|vdbpsadbw|vpmultishiftqb|vpsrav[dqw])\b'
+      scope: keyword.operator.word.mnemonic.avx512.other
   mnemonics-tsx:
     - match: '(?i)\b(x(abort|acquire|release|begin|end|test))\b'
       scope: keyword.operator.word.mnemonic.tsx
@@ -1246,6 +1281,10 @@ contexts:
       scope: keyword.operator.word.mnemonic.smx.getsec
     - match: '(?i)\b(capabilities|enteraccs|exitac|senter|sexit|parameters|smctrl|wakeup)\b'
       scope: support.constant
+  mnemonics-cet:
+    - match: '(?i)\b((inc|save|rstor)ssp|wru?ss|(set|clr)ssbsy|endbranch|endbr(32|64))\b'
+      scope: keyword.operator.word.mnemonic.cet
+
   mnemonics-intel-isa-sgx:
     - match: '(?i)\be(add|block|create|dbg(rd|wr)|extend|init|ld[bu]|pa|remove|track|wb)\b'
       scope: keyword.operator.word.mnemonic.sgx1.supervisor
@@ -1261,6 +1300,13 @@ contexts:
   mnemonics-intel-isa-sha:
     - match: '(?i)\b(sha(1rnds4|256rnds2|1nexte|(1|256)msg[12]))\b'
       scope: keyword.operator.word.mnemonic.sha
+  mnemonics-intel-isa-opmask:
+    - match: '(?i)\b(k(add|andn?|(xn?)?or|mov|not|(or)?test|shift[lr])[bdqw]|kunpck(bw|wd|dq))\b'
+      scope: keyword.operator.word.mnemonic.opmask
+  mnemonics-intel-isa-keylocker:
+    - match: '(?i)\b(aes(enc|dec)(wide)?(128|256)kl|encodekey(128|256)|loadiwkey)\b'
+      scope: keyword.operator.word.mnemonic.keylocker
+
   mnemonics-supplemental-amd:
     - match: '(?i)\b(bl([cs](fill|ic?|msk)|cs)|t1mskc|tzmsk)\b'
       scope: keyword.operator.word.mnemonic.supplemental.amd.general-purpose
@@ -1296,54 +1342,30 @@ contexts:
       scope: keyword.operator.word.mnemonic.supplemental.via
     - match: '(?i)\b(x(store(rng)?|crypt(ecb|cbc|ctr|cfb|ofb)|sha(1|256)))\b'
       scope: keyword.operator.word.mnemonic.supplemental.via.padlock
+
   mnemonics-undocumented:
     - match: '(?i)\b(ret[nf]|icebp|int1|int03|smi|ud1)\b'
       scope: keyword.operator.word.mnemonic.undocumented
   mnemonics-future-intel:
-    - include: mnemonics-future-intel-avx512
-    - include: mnemonics-future-intel-opmask
-    - include: mnemonics-future-intel-cet
+    - include: mnemonics-future-intel-apx
     - include: mnemonics-future-intel-other
-  mnemonics-future-intel-avx512:
-    - match: '(?i)\b(vblendm(pd|ps)|vpblendm[bdqw])\b'
-      scope: keyword.operator.word.mnemonic.avx512.blend
-    - match: '(?i)\b(vbroadcast[fi](32x[248]|64x[24])|v(extract|insert)[fi](32x[48]|64x[24])|vshuf[fi](32x4|64x2)|vpbroadcastm(b2q|w2d))\b'
-      scope: keyword.operator.word.mnemonic.avx512.bits-mov
-    - match: '(?i)\b(v(compress|expand)p[ds]|vp(compress|expand|conflict)[dq])\b'
-      scope: keyword.operator.word.mnemonic.avx512.compress
-    - match: '(?i)\b(vcvt(t?p[sd]2(udq|u?qq)|(udq|u?qq)2p[ds]|t?s[ds]2usi|usi2s[ds]))\b'
-      scope: keyword.operator.word.mnemonic.avx512.conversion
-    - match: '(?i)\b(v(fixupimm|fpclass|get(exp|mant)|range|(rcp|rsqrt)(14|28)|reduce|rndscale|scalef)([ps][ds]))\b'
-      scope: keyword.operator.word.mnemonic.avx512.math
-    - match: '(?i)\b(v(exp2p[ds]|(scatter|(gather|scatter)pf[01])[dq]p[ds]))\b'
-      scope: keyword.operator.word.mnemonic.avx512.math
-    - match: '(?i)\b(vmovdq(a(32|64)|u(8|16|32|64)))\b'
-      scope: keyword.operator.word.mnemonic.avx512.simd-integer
-    - match: '(?i)\b(vp(andn?|x?or)[dq])\b'
-      scope: keyword.operator.word.mnemonic.avx512.logical
-    - match: '(?i)\b(vpcmpu?[dqw])\b'
-      scope: keyword.operator.word.mnemonic.avx512.packed-comparison
-    - match: '(?i)\b(vp(absq|(lzcnt|ternlog)[dq]|madd52[lh]uq|(max|min)[su]q|mullq))\b'
-      scope: keyword.operator.word.mnemonic.avx512.packed-math
-    - match: '(?i)\b(vpmov(m2[bdqw]|[bdqw]2m|(u?s)?([qd][bw]|qd|wb)))\b'
-      scope: keyword.operator.word.mnemonic.avx512.packed-mov
-    - match: '(?i)\b(vp(ro[rl]v?[dq]|scatter[dq][dq]))\b'
-      scope: keyword.operator.word.mnemonic.avx512.packed-shift
-    - match: '(?i)\b(vptestn?m[bdqw])\b'
-      scope: keyword.operator.word.mnemonic.avx512.packed-test
-    - match: '(?i)\b(vperm([bdw]|[it]2([bdwq]|p[ds])))\b'
-      scope: keyword.operator.word.mnemonic.avx512.permutations
-    - match: '(?i)\b(valign[dq]|vdbpsadbw|vpmultishiftqb|vpsrav[dqw])\b'
-      scope: keyword.operator.word.mnemonic.avx512.other
-  mnemonics-future-intel-opmask:
-    - match: '(?i)\b(k(add|andn?|(xn?)?or|mov|not|(or)?test|shift[lr])[bdqw]|kunpck(bw|wd|dq))\b'
-      scope: keyword.operator.word.mnemonic.opmask
-  mnemonics-future-intel-cet:
-    - match: '(?i)\b((inc|save|rstor)ssp|wru?ss|(set|clr)ssbsy|endbranch|endbr(32|64))\b'
-      scope: keyword.operator.word.mnemonic.cet
   mnemonics-future-intel-other:
     - match: '(?i)\b(clflushopt|clwb|pcommit)\b'
       scope: keyword.operator.word.mnemonic.other
+  mnemonics-future-intel-apx:
+    - match: '(?i)\b(c(cmp|test)(n?[bl]e?|[ft]|n?[osz]))\b'
+      scope: keyword.operator.word.mnemonic.apx.ccmp_test
+    - match: '(?i)\b(cfcmovn?([bl]e?|[opsz]))\b'
+      scope: keyword.operator.word.mnemonic.apx.cfcmov
+    - match: '(?i)\b(cmpn?([bl]e?|[opsz])xadd)\b'
+      scope: keyword.operator.word.mnemonic.apx.cmpxadd
+    - match: '(?i)\b((ld|st)tilecfg|tile((load|store)d|loaddt1))\b'
+      scope: keyword.operator.word.mnemonic.apx.tile
+    - match: '(?i)\b(wru?ss[dq])\b'
+      scope: keyword.operator.word.mnemonic.apx.wrss
+    - match: '(?i)\b(enqcmds?|jmpabs|movdir(64b|i)|(push|pop)2p?)\b'
+      scope: keyword.operator.word.mnemonic.apx.other
+
   mnemonics-pseudo-ops:
     - match: '(?i)\b(cmp(n?(eq|lt|le)|(un)?ord)[ps][ds])\b'
       scope: keyword.pseudo-mnemonic.sse2.compare
@@ -1353,6 +1375,7 @@ contexts:
       scope: keyword.pseudo-mnemonic.avx.promoted.comparison
     - match: '(?i)\b(vpcom(n?eq|[gl][et]|false|true)(b|uw))\b'
       scope: keyword.pseudo-mnemonic.supplemental.amd.xop.simd
+
   mnemonics-invalid:
     - include: mnemonics-invalid-amd-sse5
   mnemonics-invalid-amd-sse5:
