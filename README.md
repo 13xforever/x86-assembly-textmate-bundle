@@ -20,7 +20,7 @@ Source code
 ===========
 The latest version of this package should be available on [GitHub](https://github.com/13xforever/x86-assembly-textmate-bundle).
 
-Primary syntax file is `NASM Assembly.sublime-syntax` that is up-to-spec as of NASM manual 2.13.01.
+Primary syntax file is `NASM Assembly.sublime-syntax` that is up-to-spec as of NASM manual 2.16.01.
 
 To compile the yaml sources to tmLanguage, you'll need [PackageDev](https://packagecontrol.io/packages/PackageDev) (`x86_64 Assembly.YAML-tmLanguage`,  ST2 and older only).
 
