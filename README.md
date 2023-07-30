@@ -30,7 +30,7 @@ Contributors
 
 Examples
 ========
-* Sublime Text with Monokai Extended Bright color scheme
-  ![Sublime Text with Monokai Extended Bright color scheme](./Screenshots/Sublime%20Text%203%20-%20Monokai%20Extended%20Bright.png?raw=true)
-* Visual Studio Code with default Dark color theme
-  ![Visual Studio Code with default Dark color theme](./Screenshots/Visual%20Studio%20Code%20-%20Dark.png?raw=true)
+* Sublime Text 4
+  ![Sublime Text 4 with Breakers theme](./Screenshots/Sublime%20Text%204%20-%20Light%20-%20Breakers.png?raw=true#gh-light-mode-only)![Sublime Text 4 with Mariana theme](./Screenshots/Sublime%20Text%204%20-%20Dark%20-%20Mariana.png?raw=true#gh-dark-mode-only)
+* Visual Studio Code with Eva theme
+  ![Visual Studio Code with Eva Light theme](./Screenshots/Visual%20Studio%20Code%20-%20Light%20-%20Eva.png?raw=true#gh-light-mode-only)![Visual Studio Code with Eva Light theme](./Screenshots/Visual%20Studio%20Code%20-%20Dark%20-%20Eva.png?raw=true#gh-dark-mode-only)
