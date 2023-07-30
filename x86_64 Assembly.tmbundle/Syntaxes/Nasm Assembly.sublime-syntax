@@ -133,7 +133,7 @@ contexts:
     # Initialized & uninitialized data: http://www.nasm.us/doc/nasmdoc3.html#section-3.2.1
     - match: '(?i)\b(?:s?byte|(?:[doqtyz]|dq|s[dq]?)?word|(?:d|res)[bdoqtwyz]|ddq)\b'
       scope: storage.type.asm.x86_64
-    - match: '(?i)\b(?:incbin|equ|times)\b'
+    - match: '(?i)\b(?:incbin|equ|times|dup)\b'
       scope: support.function.asm.x86_64
 
   prefixes:
@@ -143,7 +143,7 @@ contexts:
       scope: storage.modifier.prefix.asm.x86_64
     - match: '(?i)\b(?:rep(?:n?[ez])?|lock|xacquire|xrelease|(?:no)?bnd)\b'
       scope: storage.modifier.prefix.asm.x86_64
-    - match: '{(vex[23]|evex)}'
+    - match: '{(vex[23]?|evex|rex)}'
       captures:
         1: storage.modifier.prefix.vex.asm.x86_64
     - match: '{(k[1-7])}'
@@ -157,22 +157,38 @@ contexts:
         1: storage.modifier.rounding.asm.x86_64
 
   support:
-    # http://www.nasm.us/doc/nasmdoc7.html#section-7.4.6
+    # https://www.nasm.us/doc/nasmdoc8.html#section-8.4.6
     - match: '\.\.(?:start|imagebase|tlvp|got(?:pc(?:rel)?|(?:tp)?off)?|plt|sym|tlsie)\b'
       scope: support.constant.asm.x86_64
-    - match: '\b__(?:utf(?:(?:16|32)(?:[lb]e)?)|float(?:8|16|32|64|80[me]|128[lh])|Infinity|[QS]?NaN)__\b'
+    - match: '\b__\?(?:utf(?:(?:16|32)(?:[lb]e)?)|float(?:8|16|32|64|80[me]|128[lh])|bfloat16|Infinity|[QS]?NaN)\?__\b'
       scope: support.function.asm.x86_64
-    # http://www.nasm.us/doc/nasmdoc4.html#section-4.11
+    - match: '\b__(?:utf(?:(?:16|32)(?:[lb]e)?)|float(?:8|16|32|64|80[me]|128[lh])|bfloat16|Infinity|[QS]?NaN)__\b'
+      scope: support.function.legacy-alias.asm.x86_64
+
+    # https://www.nasm.us/doc/nasmdoc5.html
+    - match: '\b__\?NASM_(?:MAJOR|(?:SUB)?MINOR|SNAPSHOT|VER(?:SION_ID)?)\?__\b'
+      scope: support.function.asm.x86_64
+    - match: '\b__\?NASM_PATCHLEVEL\?__\b'
+      scope: support.function.asm.x86_64
+    - match: '\b__\?(?:FILE|LINE|BITS|OUTPUT_FORMAT|DEBUG_FORMAT)\?__\b'
+      scope: support.function.asm.x86_64
+    - match: '\b__\?(?:(?:UTC_)?(?:DATE|TIME)(?:_NUM)?|POSIX_TIME)\?__\b'
+      scope: support.function.asm.x86_64
+    - match: '\b__\?USE_(?:\w+)\?__\b'
+      scope: support.function.asm.x86_64
+    - match: '\b__\?PASS\?__\b'
+      scope: invalid.deprecated.support.constant.altreg.asm.x86_64
+    # legacy aliases
     - match: '\b__NASM_(?:MAJOR|(?:SUB)?MINOR|SNAPSHOT|VER(?:SION_ID)?)__\b'
+      scope: support.function.legacy-alias.asm.x86_64
+    - match: '\b__NASM_PATCHLEVEL__\b'
       scope: support.function.asm.x86_64
-    - match: '\b___NASM_PATCHLEVEL__\b'
-      scope: support.function.asm.x86_64
-    - match: '\b__(?:FILE|LINE|BITS|OUTPUT_FORMAT)__\b'
-      scope: support.function.asm.x86_64
+    - match: '\b__(?:FILE|LINE|BITS|OUTPUT_FORMAT|DEBUG_FORMAT)__\b'
+      scope: support.function.legacy-alias.asm.x86_64
     - match: '\b__(?:(?:UTC_)?(?:DATE|TIME)(?:_NUM)?|POSIX_TIME)__\b'
-      scope: support.function.asm.x86_64
-    - match: '\b__USE_(?:ALTREG|SMARTALIGN|FP|IFUNC)__\b'
-      scope: support.function.asm.x86_64
+      scope: support.function.legacy-alias.asm.x86_64
+    - match: '\b__USE_(?:\w+)__\b'
+      scope: support.function.legacy-alias.asm.x86_64
     - match: '\b__PASS__\b'
       scope: invalid.deprecated.support.constant.altreg.asm.x86_64
     - match: '(?i)\balignmode\b'
@@ -186,8 +202,14 @@ contexts:
         - match: '\w+'
           scope: invalid.illegal.constant.smartalign.asm.x86_64
           pop: true
-    - match: '\b__ALIGNMODE__\b'
+    - match: '\b__\?ALIGNMODE\?__\b'
       scope: support.constant.smartalign.asm.x86_64
+    - match: '\b__\?ALIGN_(?:\w+)\?__\b'
+      scope: support.function.smartalign.asm.x86_64
+    - match: '\b__ALIGNMODE__\b'
+      scope: support.constant.legacy.smartalign.asm.x86_64
+    - match: '\b__ALIGN_(?:\w+)__\b'
+      scope: support.function.legacy.smartalign.asm.x86_64
     - match: '\b(?:Inf|[QS]?NaN)\b'
       scope: support.constant.fp.asm.x86_64
     - match: '\b(?:float(?:8|16|32|64|80[me]|128[lh]))\b'
@@ -212,7 +234,7 @@ contexts:
       push: section-name
     - match: '\b(?:__SECT__|__NASMDEFSEG|_?_GLOBAL_OFFSET_TABLE_)\b'
       scope: support.constant.directive.asm.x86_64
-    - match: '(?i)\b(?:absolute|common)\b'
+    - match: '(?i)\b(?:absolute|common|static)\b'
       scope: support.function.directive.asm.x86_64
     - match: '(?i)\b(?:subsections_via_symbols|no_dead_strip)\b'
       scope: support.function.directive.macho.asm.x86_64
@@ -269,7 +291,7 @@ contexts:
         - include: line-ending
         - include: preprocessor-macro-parameter
         - include: main
-    - match: '(?i)extern\b'
+    - match: '(?i)(extern|required)\b'
       scope: support.function.directive.asm.x86_64
       push:
         - match: '(?<=\:)(?:import)\b'
@@ -301,13 +323,27 @@ contexts:
     - match: '(?i)\bcpu\b'
       scope: support.function.directive.asm.x86_64
       push:
-        - match: '(?i)\b(?:(?:80|[1-6])86|pentium|ppro|p[234]|katmai|willamette|prescott|(?:x|ia)64)\b'
+        - match: '(?i)\b(?:(?:80|[1-6])86|pentium|ppro|p[234]|katmai|willamette|prescott|(?:x|ia)64|default|all)\b'
           scope: support.constant.directive.asm.x86_64
+          pop: true
+        - match: '(?i)(?:\s|\b)([\+\-\*]|no)?((?:late|e)?vex)\b'
+          captures:
+            1: keyword.operator.logical.flag.asm.x86_64
+            2: support.constant.flag.asm.x86_64
+            4: keyword.operator.logical.flag.asm.x86_64
+            5: support.constant.flag.asm.x86_64
+          push:
+            - match: '(?i)(\s*,\s*([\+\-\*]|no)?((?:late|e)?vex)\b)'
+              captures:
+                2: keyword.operator.logical.flag.asm.x86_64
+                3: support.constant.flag.asm.x86_64
+            - include: line-continuation
+            - include: pop-if-not-whitespace
+            - include: line-ending
           pop: true
         - include: line-continuation
         - include: pop-if-not-whitespace
         - include: line-ending
-        - include: main
     - match: '(?i)\bfloat\b'
       scope: support.function.directive.asm.x86_64
       push:
@@ -396,7 +432,7 @@ contexts:
     - match: '\b__(?:text|const|data|bss|TEXT|CONST|DATA|BSS)\b'
       scope: entity.name.section.asm.x86_64 string.unquoted.asm.x86_64 support.constant.section.macho.asm.x86_64
       pop: true
-    - match: '(?:\.)(?:[lt](?:data|bss)|lrodata|comment)\b'
+    - match: '(?:\.)(?:[lt](?:data|bss)|lrodata|comment|note|preinit_array|init_array|fini_array)\b'
       scope: entity.name.section.asm.x86_64 string.unquoted.asm.x86_64 support.constant.section.elf.asm.x86_64
       pop: true
     - match: '(?:\.|\b){{valid_identifier}}\b'
@@ -428,12 +464,18 @@ contexts:
     - match: '(%%|%)[[:space:]]'
       captures:
         1: keyword.operator.arithmetic.asm.x86_64
-    - match: '[|&^~!]|<<|>>'
+    - match: '[|&^~!]|<<<?|>>>?'
       scope: keyword.operator.bitwise.asm.x86_64
     - match: '(?i)\b(seg|wrt)\b'
       scope: keyword.operator.word.asm.x86_64
     - match: ','
       scope: operator.separator.asm.x86_64
+    - match: '(^|\s)(\?)(\s|$)'
+      captures:
+        2: keyword.operator.ternary.asm.x86_64
+    - match: '(^|\s)(\:)(\s|$)'
+      captures:
+        2: keyword.operator.ternary.asm.x86_64
 
   structs:
     - match: '(?i)\bstruc\b'
@@ -488,7 +530,7 @@ contexts:
       scope: invalid.illegal.variable.language.asm.x86_64
     - match: '\$'
       scope: variable.language.asm.x86_64
- 
+
   comments:
     - match: (?:(;)|(?:^|\s)(#)\s).*$
       scope: comment.line.asm.x86_64
@@ -511,7 +553,7 @@ contexts:
     - include: preprocessor-other
   # single-line macro
   preprocessor-macro-define:
-    - match: '^\s*((%)x?i?define)\b'
+    - match: '^\s*((%)(x?i?define|defalias))\b'
       captures:
         1: meta.preprocessor.macro.asm.x86_64 keyword.control.import.preprocessor.asm.x86_64
         2: punctuation.definition.keyword.preprocessor.asm.x86_64
@@ -535,7 +577,7 @@ contexts:
         1: meta.preprocessor.asm.x86_64 keyword.control.import.preprocessor.asm.x86_64
         2: punctuation.definition.keyword.preprocessor.asm.x86_64
       push: preprocessor-macro-definition
-    - match: '^\s*((%)use)\b'
+    - match: '^\s*((%)(use|ifusing|ifusable))\b'
       captures:
         1: meta.preprocessor.asm.x86_64 keyword.control.import.preprocessor.asm.x86_64
         2: punctuation.definition.keyword.preprocessor.asm.x86_64
@@ -607,16 +649,20 @@ contexts:
     - include: preprocessor-macro-params
   preprocessor-macro-params:
     - meta_scope: meta.preprocessor.macro.parameters.asm.x86_64 meta.group.asm.x86_64
-    - match: '{{valid_identifier}}'
-      scope: variable.parameter.asm.x86_64
+    - match: '([=&+!]|&&)?({{valid_identifier}})'
+      captures:
+        1: storage.modifier.macro-expansion.asm.x86_64
+        2: variable.parameter.asm.x86_64
     - match: '\)'
       scope: punctuation.section.group.end.asm.x86_64
       set: preprocessor-macro-definition
     - match: ','
       scope: punctuation.separator.asm.x86_64
       push:
-        - match: '{{valid_identifier}}'
-          scope: variable.parameter.asm.x86_64
+        - match: '([=&+!]|&&)?({{valid_identifier}})'
+          captures:
+            1: storage.modifier.macro-expansion.asm.x86_64
+            2: variable.parameter.asm.x86_64
           pop: true
         - include: line-continuation
         - include: preprocessor-comments
@@ -645,6 +691,7 @@ contexts:
   preprocessor-macro-definition:
     - meta_content_scope: meta.preprocessor.macro.asm.x86_64
     - include: preprocessor-comments
+    - include: preprocessor-functions
     - include: line-continuation
     - include: line-ending
     - include: main
@@ -666,7 +713,7 @@ contexts:
       captures:
         1: meta.preprocessor.asm.x86_64 keyword.operator.preprocessor.asm.x86_64
         2: punctuation.definition.keyword.preprocessor.asm.x86_64
-    - match: '((%)(\?\??))'
+    - match: '((%)(\*?\?\??))'
       captures:
         1: meta.preprocessor.asm.x86_64 keyword.operator.preprocessor.asm.x86_64
         2: punctuation.definition.keyword.preprocessor.asm.x86_64
@@ -693,6 +740,22 @@ contexts:
             - include: strings
             - include: pop
         - include: pop
+  preprocessor-functions:
+    - match: '((%)(?:(abs|cond|count|eval|isn?(?:def|macro|ctx|idni?|id|num|str|token|empty|env)?|num|sel|str(?:cat|len)?|substr|tok)\s*(\()))'
+      captures:
+        1: meta.preprocessor.function.asm.x86_64
+        2: punctuation.definition.keyword.preprocessor.asm.x86_64 keyword.control.preprocessor.asm.x86_64
+        3: support.function.preprocessor.asm.x86_64
+        4: meta.brackets.asm.x86_64 punctuation.macro.arguments.brackets.begin.asm.x86_64
+      push:
+        - meta_scope: meta.brackets.asm.x86_64
+        - include: line-continuation
+        - include: line-ending
+        - include: main
+        - match: '\)'
+          scope: punctuation.macro.arguments.brackets.end.asm.x86_64
+          pop: true
+
   preprocessor-conditions: # also see preprocessor-macro-conditions-multiline
     - match: '^\s*((%)ifn?(?:idni?|id|num|str|token|empty|env)?)\b'
       captures:
@@ -733,6 +796,7 @@ contexts:
   preprocessor-conditions-content-block:
     - meta_content_scope: meta.block.preprocessor.asm.x86_64
     - include: preprocessor-conditions-content-block-common
+    - include: preprocessor-functions
     - include: main
   preprocessor-conditions-content-block-common:
     - match: '^\s*((%)(?:elifn?(?:idni?|id|num|str|token|empty|env)?|else|exitrep))\b'
@@ -761,7 +825,7 @@ contexts:
         2: punctuation.definition.keyword.preprocessor.asm.x86_64
   preprocessor-other:
     - include: preprocessor-macro-indirection
-    - match: '^\s*((%)undef)\b'
+    - match: '^\s*((%)(undef(alias)?))\b'
       captures:
         1: meta.preprocessor.asm.x86_64 keyword.control.preprocessor.asm.x86_64
         2: punctuation.definition.keyword.preprocessor.asm.x86_64
@@ -773,7 +837,7 @@ contexts:
         - match: '{{valid_identifier}}'
           scope: entity.name.constant.preprocessor.asm.x86_64
           pop: true
-    - match: '^\s*((%)unmacro)\b'
+    - match: '^\s*((%)uni?macro)\b'
       captures:
         1: meta.preprocessor.asm.x86_64 keyword.control.import.asm.x86_64
         2: punctuation.definition.keyword.preprocessor.asm.x86_64
@@ -874,7 +938,7 @@ contexts:
         1: meta.preprocessor.asm.x86_64 keyword.control.preprocessor.asm.x86_64
         2: punctuation.definition.keyword.preprocessor.asm.x86_64
       set: [preprocessor-macro-definition-multiline-with-parameters, preprocessor-conditions-constant]
-    - match: '^\s*((%)x?i?define)\b'
+    - match: '^\s*((%)(x?i?define|defalias))\b'
       captures:
         1: meta.preprocessor.macro.asm.x86_64 keyword.control.import.preprocessor.asm.x86_64
         2: punctuation.definition.keyword.preprocessor.asm.x86_64
