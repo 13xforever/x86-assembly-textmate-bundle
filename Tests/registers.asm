@@ -70,6 +70,9 @@ bnd0, bnd1, bnd2, bnd3, bndcfgu, bndcfgs, bndstatus
 ;control registers
 cr0, cr2, cr3, cr4
 
+;extended control register (not accessible directly)
+XCR
+
 ;system table pointer registers 
 gdtr, ldtr, idtr, tr
 
