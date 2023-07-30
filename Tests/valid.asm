@@ -626,7 +626,7 @@ vlddqu|vldmxcsr
 vmaskmov|vmaskmovdqu|vmaskmovpd|vmaskmovps|vmaxpd|vmaxph|vmaxps|vmaxsd|vmaxsh|vmaxss|vminpd|vminph|vminps|vminsd|vminsh|vminss|vmovapd|vmovaps|vmovd|vmovddup|vmovdqa|vmovdqa32|vmovdqa64|vmovdqu|vmovdqu8|vmovdqu16|vmovdqu32|vmovdqu64|vmovhlps|vmovhpd|vmovhps|vmovlhps|vmovlpd|vmovlps|vmovmskpd|vmovmskps|vmovntdq|vmovntdqa|vmovntpd|vmovntps|vmovq|vmovsd|vmovsh|vmovshdup|vmovsldup|vmovss|vmovupd|vmovups|vmovw|vmpsadbw|vmulpd|vmulph|vmulps|vmulsd|vmulsh|vmulss
 vorpd|vorps
 vp2intersectd|vp2intersectq|vpabsb|vpabsd|vpabsq|vpabsw|vpackssdw|vpacksswb|vpackusdw|vpackuswb|vpaddb|vpaddd|vpaddq|vpaddsb|vpaddsw|vpaddusb|vpaddusw|vpaddw|vpalignr|vpand|vpandd|vpandn|vpandnd|vpandnq|vpandq|vpavgb|vpavgw
-vpblendd|vpblendmb|vpblendmd|vpblendmq|vpblendmw|vpblendvb|vpblendw|vpbroadcastb|vpbroadcastd|vpbroadcasti32x4|vpbroadcastm|vpbroadcastmb2q|vpbroadcastmw2d|vpbroadcastq|vpbroadcastw
+vpblendd|vpblendmb|vpblendmd|vpblendmq|vpblendmw|vpblendvb|vpblendw|vpbroadcastb|vpbroadcastd|vpbroadcasti32x4|vpbroadcastmb2q|vpbroadcastmw2d|vpbroadcastq|vpbroadcastw
 vpclmulqdq|vpcmpb|vpcmpd|vpcmpeqb|vpcmpeqd|vpcmpeqq|vpcmpeqw|vpcmpestri|vpcmpestrm|vpcmpgtb|vpcmpgtd|vpcmpgtq|vpcmpgtw|vpcmpistri|vpcmpistrm|vpcmpq|vpcmpub|vpcmpud|vpcmpuq|vpcmpuw|vpcmpw|vpcompressb|vpcompressd|vpcompressq|vpcompressw|vpconflictd|vpconflictq
 vpdpbusd|vpdpbusds|vpdpwssd|vpdpwssds
 vperm2f128|vperm2i128|vpermb|vpermd|vpermi2b|vpermi2d|vpermi2pd|vpermi2ps|vpermi2q|vpermi2w|vpermilpd|vpermilps|vpermpd|vpermps|vpermq|vpermt2b|vpermt2d|vpermt2pd|vpermt2ps|vpermt2q|vpermt2w|vpermw|vpexpandb|vpexpandd|vpexpandq|vpexpandw|vpextrb|vpextrd|vpextrq|vpextrtd|vpextrw

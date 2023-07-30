@@ -1485,31 +1485,31 @@
 					<key>match</key>
 					<string>(?i)\b(cmp(n?(eq|lt|le)|(un)?ord)[ps][ds])\b</string>
 					<key>name</key>
-					<string>keyword.pseudo-mnemonic.sse2.compare</string>
+					<string>keyword.operator.word.pseudo-mnemonic.sse2.compare</string>
 				</dict>
 				<dict>
 					<key>match</key>
 					<string>(?i)\b(v?pclmul([hl]q[hl]q|[hl]qh)dq)\b</string>
 					<key>name</key>
-					<string>keyword.pseudo-mnemonic.avx.promoted.aes</string>
+					<string>keyword.operator.word.pseudo-mnemonic.avx.promoted.aes</string>
 				</dict>
 				<dict>
 					<key>match</key>
 					<string>(?i)\b(vcmp(eq(_(os|uq|us))?|neq(_(oq|os|us))?|[gl][et](_oq)?|n[gl][et](_uq)?|(un)?ord(_s)?|false(_os)?|true(_us)?)[ps][ds])\b</string>
 					<key>name</key>
-					<string>keyword.pseudo-mnemonic.avx.promoted.comparison</string>
+					<string>keyword.operator.word.pseudo-mnemonic.avx.promoted.comparison</string>
 				</dict>
 				<dict>
 					<key>match</key>
 					<string>(?i)\bvp(cmpn?(eq|le|lt))\b</string>
 					<key>name</key>
-					<string>keyword.pseudo-mnemonic.avx512.compare</string>
+					<string>keyword.operator.word.pseudo-mnemonic.avx512.compare</string>
 				</dict>
 				<dict>
 					<key>match</key>
 					<string>(?i)\b(vpcom(n?eq|[gl][et]|false|true)(b|uw))\b</string>
 					<key>name</key>
-					<string>keyword.pseudo-mnemonic.supplemental.amd.xop.simd</string>
+					<string>keyword.operator.word.pseudo-mnemonic.supplemental.amd.xop.simd</string>
 				</dict>
 			</array>
 		</dict>
