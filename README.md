@@ -11,7 +11,9 @@ Features
   * SSE/SSE2/(S)SSE3/SSE4/SSE4.1/SSE4.2/SSE4.a
   * AVX/AVX2/AVX512, including pseudo-ops
   * AES-NI/SHA
-  * VMX/SMX/NPX/SGX
+  * VMX/SMX/MPX/SGX
+  * Key Locker
+  * APX
   * other AMD/Cyrix/VIA and planned future Intel extensions
 
 Source code

@@ -31,6 +31,10 @@ vcmpeq_usss|vcmpnge_uqss|vcmpngt_uqss|vcmpfalse_osss|vcmpneq_osss|vcmpge_oqss|vc
 ;Table 4-11.  Pseudo-Op and PCLMULQDQ Implementation
 pclmullqlqdq|pclmulhqlqdq|pclmullqhdq|pclmulhqhdq ;pclmullqhqdq|pclmulhqhqdq ???
 
+;Intel® 64 and IA-32 Architectures Software Developer’s Manual. Vol 2 (2032-06)
+;Table 5-21. Pseudo-Op and VPCMP* Implementation
+vpcmpeq|vpcmple|vpcmplt|vpcmpneq|vpcmpnle|vpcmpnlt
+
 ;====================================================================
 ;Intel® Architecture Instruction Set Extensions Programming Reference (2014-10)
 ;Table 5-4. Pseudo-Op and CMPPD Implementation

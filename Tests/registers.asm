@@ -5,7 +5,7 @@ edil, esil, ebpl, espl
 r0l, r1l, r7l, r16l, r18l, r20l, r21l
 r0w, r1w, r7w, r16w, r18w, r20w, r21w
 r0d, r1d, r7d, r16d, r18d, r20d, r21d
-r0, r1, r7, r16, r18, r20, r21
+r0, r1, r7
 xmm, xmm01
 ymm, ymm01
 zmm, zmm01, zmm32, zmm40, zmm41
@@ -33,6 +33,9 @@ eax, ebx, ecx, edx, edi, esi, ebp, esp
 eax, ebx, ecx, edx, edi, esi, ebp, esp, r8d, r9d, r10d, r11d, r12d, r13d, r14d, r15d
 rax, rbx, rcx, rdx, rdi, rsi, rbp, rsp, r8, r9, r10, r11, r12, r13, r14, r15
 r8b, r9b, r10b, r11b, r12b, r13b, r14b, r15b ;amd
+
+;intel apx
+r16, r17, r18, r19, r20, r21, r22, r23, r24, r25, r26, r27, r28, r29, r30, r31
 
 ;segment
 cs, ds, ss, es, fs, gs
@@ -66,6 +69,9 @@ bnd0, bnd1, bnd2, bnd3, bndcfgu, bndcfgs, bndstatus
 
 ;control registers
 cr0, cr2, cr3, cr4
+
+;extended control register (not accessible directly)
+XCR
 
 ;system table pointer registers 
 gdtr, ldtr, idtr, tr
