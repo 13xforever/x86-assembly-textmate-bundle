@@ -1089,6 +1089,7 @@ contexts:
     - include: mnemonics-amx
     - include: mnemonics-uirq
     - include: mnemonics-esi
+    - include: mnemonics-speculation
     - include: mnemonics-intel-manual-listing
     - include: mnemonics-intel-isa-xeon-phi
     - include: mnemonics-intel-isa-keylocker
@@ -1436,6 +1437,9 @@ contexts:
   mnemonics-esi:
     - match: '(?i)\benqcmds?\b'
       scope: keyword.operator.word.mnemonic.esi
+  mnemonics-speculation:
+    - match: '(?i)\bib(pb|hf)\b'
+      scope: keyword.operator.word.mnemonic.speculation
   mnemonics-intel-manual-listing:
     - match: '(?i)\bcvtt?pd1pi\b'
       scope: keyword.operator.word.mnemonic.other.c
